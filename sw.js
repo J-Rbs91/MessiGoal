@@ -4,12 +4,13 @@
  * Service worker MessiGoal — met l'application en cache pour un usage hors-ligne
  * et une installation en tant qu'application (PWA).
  *
- * Stratégie :
- *  - coquille de l'app (HTML/CSS/JS, icônes) : cache d'abord ;
- *  - données (goals.json) : réseau d'abord, repli sur le cache hors-ligne.
+ * Stratégie : RÉSEAU D'ABORD pour tout (HTML/CSS/JS comme les données), avec
+ * repli sur le cache hors-ligne. Ainsi l'app et les buts sont toujours à jour
+ * dès qu'on est en ligne, et restent disponibles hors connexion. (Une stratégie
+ * « cache d'abord » figeait l'ancienne version de l'app sur les appareils.)
  */
 
-const VERSION = 'messigoal-v3';
+const VERSION = 'messigoal-v4';
 const SHELL = [
   './',
   './index.html',
@@ -42,29 +43,14 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  // Données : réseau d'abord, repli cache
-  if (url.pathname.endsWith('goals.json')) {
-    event.respondWith(
-      fetch(request)
-        .then((res) => {
-          const copy = res.clone();
-          caches.open(VERSION).then((c) => c.put(request, copy));
-          return res;
-        })
-        .catch(() => caches.match(request))
-    );
-    return;
-  }
-
-  // Coquille : cache d'abord, repli réseau
+  // Réseau d'abord (toujours à jour), repli sur le cache (hors-ligne).
   event.respondWith(
-    caches.match(request).then((cached) =>
-      cached ||
-      fetch(request).then((res) => {
+    fetch(request)
+      .then((res) => {
         const copy = res.clone();
         caches.open(VERSION).then((c) => c.put(request, copy));
         return res;
-      }).catch(() => caches.match('./index.html'))
-    )
+      })
+      .catch(() => caches.match(request).then((cached) => cached || caches.match('./index.html')))
   );
 });
