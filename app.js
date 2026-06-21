@@ -90,6 +90,7 @@ function applyFilters(goals, q) {
   r.sort((a, b) => {
     if (sort === 'date_asc') return String(a.date).localeCompare(String(b.date));
     if (sort === 'minute') return (a.minute ?? 999) - (b.minute ?? 999);
+    if (sort === 'number') return (a.goalNumber ?? Infinity) - (b.goalNumber ?? Infinity);
     return String(b.date).localeCompare(String(a.date));
   });
   return r;
@@ -180,6 +181,7 @@ function renderGoals(goals) {
       ? `<a class="video-link" href="${escapeHtml(vurl)}" target="_blank" rel="noopener noreferrer">▶ Voir</a>`
       : '<span class="muted">—</span>';
     return `<tr data-id="${escapeHtml(g.id)}">
+      <td data-label="N° du but">${g.goalNumber != null ? '#' + escapeHtml(g.goalNumber) : '—'}</td>
       <td data-label="Date">${formatDate(g.date)}</td>
       <td data-label="Équipe">${escapeHtml(g.team) || '—'}</td>
       <td class="opponent" data-label="Adversaire">${escapeHtml(g.opponent)}</td>
@@ -243,6 +245,7 @@ function openGitHubContribution(payload, id) {
     (payload.opponent || '?') + ' (' + (payload.date || '?') + ')';
 
   const rows = [
+    ['N° du but (carrière)', payload.goalNumber],
     ['Date', payload.date],
     ['Équipe de Messi', payload.team],
     ['Équipe adverse', payload.opponent],

@@ -47,6 +47,7 @@
       <select id="filter-sort">
         <option value="date_desc">Date ↓ (récent)</option>
         <option value="date_asc">Date ↑ (ancien)</option>
+        <option value="number">N° de but ↑</option>
         <option value="minute">Minute</option>
       </select>
       <label class="checkbox"><input type="checkbox" id="filter-hasVideo" /> Avec vidéo</label>
@@ -59,6 +60,7 @@
       <table class="goals-table">
         <thead>
           <tr>
+            <th>N°</th>
             <th>Date</th>
             <th>Équipe</th>
             <th>Adversaire</th>
@@ -87,6 +89,7 @@
       <h2 id="dialog-title">Ajouter un but</h2>
       <div id="form-errors" class="form-errors" hidden></div>
       <div class="form-grid">
+        <label>N° du but (en carrière)<input type="number" name="goalNumber" min="1" max="2000" placeholder="457" /></label>
         <label>Date *<input type="date" name="date" required /></label>
         <label>Équipe adverse *<input type="text" name="opponent" placeholder="Real Madrid" required /></label>
         <label>Équipe de Messi<input type="text" name="team" list="teams-list" placeholder="FC Barcelone, PSG, Inter Miami, Argentine…" /></label>

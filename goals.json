@@ -1,6 +1,7 @@
 [
   {
     "id": "2023-07-21-cruz-azul",
+    "goalNumber": null,
     "date": "2023-07-21",
     "team": "Inter Miami",
     "opponent": "Cruz Azul",
@@ -19,6 +20,7 @@
   },
   {
     "id": "2022-12-18-france-2",
+    "goalNumber": null,
     "date": "2022-12-18",
     "team": "Argentine",
     "opponent": "France",
@@ -37,6 +39,7 @@
   },
   {
     "id": "2022-12-18-france",
+    "goalNumber": null,
     "date": "2022-12-18",
     "team": "Argentine",
     "opponent": "France",
@@ -55,6 +58,7 @@
   },
   {
     "id": "2022-12-13-croatie",
+    "goalNumber": null,
     "date": "2022-12-13",
     "team": "Argentine",
     "opponent": "Croatie",
@@ -73,6 +77,7 @@
   },
   {
     "id": "2022-11-26-mexique",
+    "goalNumber": null,
     "date": "2022-11-26",
     "team": "Argentine",
     "opponent": "Mexique",
@@ -91,6 +96,7 @@
   },
   {
     "id": "2021-09-28-manchester-city",
+    "goalNumber": null,
     "date": "2021-09-28",
     "team": "Paris Saint-Germain",
     "opponent": "Manchester City",
@@ -109,6 +115,7 @@
   },
   {
     "id": "2017-04-23-real-madrid",
+    "goalNumber": null,
     "date": "2017-04-23",
     "team": "FC Barcelone",
     "opponent": "Real Madrid",
@@ -127,6 +134,7 @@
   },
   {
     "id": "2015-05-30-athletic-bilbao",
+    "goalNumber": null,
     "date": "2015-05-30",
     "team": "FC Barcelone",
     "opponent": "Athletic Bilbao",
@@ -145,6 +153,7 @@
   },
   {
     "id": "2015-05-06-bayern-munich",
+    "goalNumber": null,
     "date": "2015-05-06",
     "team": "FC Barcelone",
     "opponent": "Bayern Munich",
@@ -163,6 +172,7 @@
   },
   {
     "id": "2011-05-28-manchester-united",
+    "goalNumber": null,
     "date": "2011-05-28",
     "team": "FC Barcelone",
     "opponent": "Manchester United",
@@ -181,6 +191,7 @@
   },
   {
     "id": "2011-04-27-real-madrid",
+    "goalNumber": null,
     "date": "2011-04-27",
     "team": "FC Barcelone",
     "opponent": "Real Madrid",
@@ -199,6 +210,7 @@
   },
   {
     "id": "2009-05-27-manchester-united",
+    "goalNumber": null,
     "date": "2009-05-27",
     "team": "FC Barcelone",
     "opponent": "Manchester United",
@@ -217,6 +229,7 @@
   },
   {
     "id": "2007-04-18-getafe",
+    "goalNumber": null,
     "date": "2007-04-18",
     "team": "FC Barcelone",
     "opponent": "Getafe",
@@ -235,6 +248,7 @@
   },
   {
     "id": "2005-05-01-albacete",
+    "goalNumber": 1,
     "date": "2005-05-01",
     "team": "FC Barcelone",
     "opponent": "Albacete",

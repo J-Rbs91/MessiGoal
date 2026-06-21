@@ -49,6 +49,12 @@ body:
     attributes:
       label: Minute du but
       placeholder: "70"
+  - type: input
+    id: goalNumber
+    attributes:
+      label: Numéro du but en carrière
+      description: "1 = tout premier but, 457 = 457e but…"
+      placeholder: "457"
   - type: dropdown
     id: bodyPart
     attributes:

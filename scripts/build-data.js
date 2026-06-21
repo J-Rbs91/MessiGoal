@@ -60,6 +60,10 @@ function validateGoal(goal) {
     const n = Number(goal.minute);
     if (!Number.isInteger(n) || n < 0 || n > 130) errors.push('minute invalide (entier 0-130)');
   }
+  if (!isEmpty(goal.goalNumber)) {
+    const n = Number(goal.goalNumber);
+    if (!Number.isInteger(n) || n < 1 || n > 2000) errors.push('numéro du but invalide (entier 1-2000)');
+  }
   if (!isEmpty(goal.bodyPart) && !BODY_PARTS.includes(goal.bodyPart)) {
     errors.push('partie du corps invalide (' + BODY_PARTS.join(', ') + ')');
   }
@@ -85,6 +89,7 @@ function validateGoal(goal) {
 function normalize(data, id) {
   return {
     id,
+    goalNumber: (data.goalNumber === '' || data.goalNumber == null) ? null : Number(data.goalNumber),
     date: data.date || '',
     team: data.team || '',
     opponent: data.opponent || '',

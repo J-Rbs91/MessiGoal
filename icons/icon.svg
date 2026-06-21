@@ -1,8 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
     <rect width="512" height="512" fill="#000000"/>
-    <circle cx="256" cy="248" r="150" fill="none" stroke="#edbb00" stroke-width="16"/>
-    <text x="256" y="248" font-family="Arial, Helvetica, sans-serif" font-size="190" font-weight="800"
-          fill="#edbb00" text-anchor="middle" dominant-baseline="central">10</text>
-    <rect x="96" y="430" width="320" height="14" fill="#a50044"/>
-    <rect x="120" y="456" width="272" height="10" fill="#004d98"/>
+    <circle cx="256" cy="256" r="196" fill="#f5f5f5" stroke="#004d98" stroke-width="8"/>
+    <line x1="256.0" y1="190.0" x2="256.0" y2="60.0" stroke="#0b1c2c" stroke-width="9" stroke-linecap="round"/>
+    <line x1="318.8" y1="235.6" x2="442.4" y2="195.4" stroke="#0b1c2c" stroke-width="9" stroke-linecap="round"/>
+    <line x1="294.8" y1="309.4" x2="371.2" y2="414.6" stroke="#0b1c2c" stroke-width="9" stroke-linecap="round"/>
+    <line x1="217.2" y1="309.4" x2="140.8" y2="414.6" stroke="#0b1c2c" stroke-width="9" stroke-linecap="round"/>
+    <line x1="193.2" y1="235.6" x2="69.6" y2="195.4" stroke="#0b1c2c" stroke-width="9" stroke-linecap="round"/>
+    <polygon points="381.4,161.7 330.0,178.4 298.2,134.6 330.0,90.9 381.4,107.6" fill="#004d98"/>
+    <polygon points="384.4,346.1 352.7,302.4 384.4,258.6 435.9,275.3 435.9,329.4" fill="#004d98"/>
+    <polygon points="210.0,406.0 241.8,362.3 293.2,379.0 293.2,433.0 241.8,449.7" fill="#004d98"/>
+    <polygon points="99.1,258.6 150.6,275.3 150.6,329.4 99.1,346.1 67.3,302.4" fill="#004d98"/>
+    <polygon points="205.0,107.6 205.0,161.7 153.6,178.4 121.8,134.6 153.6,90.9" fill="#004d98"/>
+    <polygon points="256.0,190.0 318.8,235.6 294.8,309.4 217.2,309.4 193.2,235.6" fill="#a50044"/>
   </svg>

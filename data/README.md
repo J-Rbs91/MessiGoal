@@ -39,6 +39,7 @@ même match, suffixez : `...-manchester-united-2.json`.
 |---|---|---|---|
 | `date` | chaîne `AAAA-MM-JJ` | ✅ | — |
 | `opponent` | chaîne | ✅ | équipe adverse |
+| `goalNumber` | entier 1–2000 ou `null` | — | numéro du but en carrière (1 = premier but) |
 | `team` | chaîne | — | équipe de Messi : FC Barcelone, Paris Saint-Germain, Inter Miami, Argentine… |
 | `competition` | chaîne | — | Liga, Ligue des champions, Copa del Rey… |
 | `city` | chaîne | — | ville du match |
