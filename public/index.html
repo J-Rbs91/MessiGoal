@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MessiGoal — Tous les buts de Lionel Messi</title>
+  <meta name="description" content="Base de données participative recensant tous les buts de Lionel Messi : date, lieu, stade, adversaire, minute, partie du corps, type, compétition, gardien et vidéo." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1>⚽ MessiGoal</h1>
+      <p class="tagline">La base participative de tous les buts de Lionel Messi</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Statistiques -->
+    <section class="stats" id="stats" aria-label="Statistiques">
+      <div class="stat-card"><span class="stat-value" id="stat-total">—</span><span class="stat-label">Buts recensés</span></div>
+      <div class="stat-card"><span class="stat-value" id="stat-video">—</span><span class="stat-label">Avec vidéo</span></div>
+      <div class="stat-card"><span class="stat-value" id="stat-comp">—</span><span class="stat-label">Compétitions</span></div>
+      <div class="stat-card"><span class="stat-value" id="stat-opp">—</span><span class="stat-label">Adversaires</span></div>
+    </section>
+
+    <div class="toolbar">
+      <button class="btn btn-primary" id="btn-add">＋ Ajouter un but</button>
+      <p class="contrib-note">Site participatif : chacun peut <strong>ajouter</strong>, <strong>corriger</strong> et <strong>compléter</strong> les buts.</p>
+    </div>
+
+    <!-- Filtres -->
+    <section class="filters" aria-label="Filtres">
+      <input type="search" id="filter-q" placeholder="Rechercher (adversaire, stade, ville, gardien…)" />
+      <select id="filter-competition"><option value="">Toutes compétitions</option></select>
+      <select id="filter-bodyPart"><option value="">Toutes parties du corps</option></select>
+      <select id="filter-goalType"><option value="">Tous types de but</option></select>
+      <select id="filter-sort">
+        <option value="date_desc">Date ↓ (récent)</option>
+        <option value="date_asc">Date ↑ (ancien)</option>
+        <option value="minute">Minute</option>
+      </select>
+      <label class="checkbox"><input type="checkbox" id="filter-hasVideo" /> Avec vidéo</label>
+    </section>
+
+    <p class="result-count" id="result-count"></p>
+
+    <!-- Tableau des buts -->
+    <div class="table-wrap">
+      <table class="goals-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Adversaire</th>
+            <th>Compétition</th>
+            <th>Lieu / Stade</th>
+            <th>Min.</th>
+            <th>Partie du corps</th>
+            <th>Type</th>
+            <th>Gardien</th>
+            <th>Vidéo</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="goals-body"></tbody>
+      </table>
+      <p class="empty-state" id="empty-state" hidden>Aucun but ne correspond. Soyez le premier à en ajouter un !</p>
+    </div>
+  </main>
+
+  <!-- Modale d'ajout / édition -->
+  <dialog id="goal-dialog">
+    <form method="dialog" id="goal-form">
+      <h2 id="dialog-title">Ajouter un but</h2>
+      <div id="form-errors" class="form-errors" hidden></div>
+      <div class="form-grid">
+        <label>Date *<input type="date" name="date" required /></label>
+        <label>Équipe adverse *<input type="text" name="opponent" placeholder="Real Madrid" required /></label>
+        <label>Compétition<input type="text" name="competition" list="competitions-list" placeholder="Liga, Ligue des champions…" /></label>
+        <label>Ville / Lieu<input type="text" name="city" placeholder="Barcelone" /></label>
+        <label>Stade<input type="text" name="stadium" placeholder="Camp Nou" /></label>
+        <label>Minute<input type="number" name="minute" min="0" max="130" placeholder="87" /></label>
+        <label>Partie du corps
+          <select name="bodyPart" id="select-bodyPart"><option value="">—</option></select>
+        </label>
+        <label>Type de but
+          <select name="goalType" id="select-goalType"><option value="">—</option></select>
+        </label>
+        <label>Gardien adverse<input type="text" name="goalkeeper" placeholder="Iker Casillas" /></label>
+        <label>Lien vidéo<input type="url" name="videoUrl" placeholder="https://…" /></label>
+        <label class="full">Votre nom / pseudo (optionnel)<input type="text" name="contributor" placeholder="Contributeur" /></label>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn" id="btn-cancel">Annuler</button>
+        <button type="submit" class="btn btn-primary" id="btn-save">Enregistrer</button>
+      </div>
+    </form>
+  </dialog>
+
+  <datalist id="competitions-list"></datalist>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>MessiGoal — projet communautaire et participatif. Les données sont libres et corrigeables par tous.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
