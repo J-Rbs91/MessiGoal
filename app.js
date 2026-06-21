@@ -419,7 +419,7 @@ async function loadStats() {
 function openDialog(goal = null) {
   editingId = goal ? goal.id : null;
   $('#dialog-title').textContent = goal ? 'Proposer une correction' : 'Proposer un but';
-  $('#btn-save').textContent = 'Créer une proposition GitHub';
+  $('#btn-save').textContent = 'Envoyer ma contribution';
 
   const form = $('#goal-form');
   form.reset();
@@ -493,7 +493,7 @@ function submitForm(e) {
 
   openGitHubContribution(payload, editingId);
   $('#goal-dialog').close();
-  showToast('Merci ! Finalisez votre contribution sur GitHub.');
+  showToast('Merci ! Finalisez votre contribution participative dans la page qui vient de s’ouvrir.');
 }
 
 // ---------------------------------------------------------------------------
