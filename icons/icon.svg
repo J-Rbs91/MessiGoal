@@ -1,19 +1,33 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
-    <defs><clipPath id="ball"><circle cx="256" cy="256" r="196"/></clipPath></defs>
-    <rect width="512" height="512" fill="#000000"/>
-    <circle cx="256" cy="256" r="196" fill="#f5f5f5"/>
-    <g clip-path="url(#ball)">
-      <line x1="256.0" y1="196.0" x2="256.0" y2="60.0" stroke="#0b1c2c" stroke-width="11" stroke-linecap="round"/>
-      <line x1="313.1" y1="237.5" x2="442.4" y2="195.4" stroke="#0b1c2c" stroke-width="11" stroke-linecap="round"/>
-      <line x1="291.3" y1="304.5" x2="371.2" y2="414.6" stroke="#0b1c2c" stroke-width="11" stroke-linecap="round"/>
-      <line x1="220.7" y1="304.5" x2="140.8" y2="414.6" stroke="#0b1c2c" stroke-width="11" stroke-linecap="round"/>
-      <line x1="198.9" y1="237.5" x2="69.6" y2="195.4" stroke="#0b1c2c" stroke-width="11" stroke-linecap="round"/>
-      <polygon points="308.9,183.2 287.1,116.1 344.2,74.6 401.2,116.1 379.4,183.2" fill="#004d98" stroke="#0b1c2c" stroke-width="6" stroke-linejoin="round"/>
-      <polygon points="341.6,283.8 398.7,242.4 455.7,283.8 433.9,350.9 363.4,350.9" fill="#004d98" stroke="#0b1c2c" stroke-width="6" stroke-linejoin="round"/>
-      <polygon points="256.0,346.0 313.1,387.5 291.3,454.5 220.7,454.5 198.9,387.5" fill="#004d98" stroke="#0b1c2c" stroke-width="6" stroke-linejoin="round"/>
-      <polygon points="170.4,283.8 148.6,350.9 78.1,350.9 56.3,283.8 113.3,242.4" fill="#004d98" stroke="#0b1c2c" stroke-width="6" stroke-linejoin="round"/>
-      <polygon points="203.1,183.2 132.6,183.2 110.8,116.1 167.8,74.6 224.9,116.1" fill="#004d98" stroke="#0b1c2c" stroke-width="6" stroke-linejoin="round"/>
-      <polygon points="256.0,194.0 315.0,236.8 292.4,306.2 219.6,306.2 197.0,236.8" fill="#a50044" stroke="#0b1c2c" stroke-width="6" stroke-linejoin="round"/>
-    </g>
-    <circle cx="256" cy="256" r="196" fill="none" stroke="#004d98" stroke-width="10"/>
-  </svg>
+  <!-- The Goal Archive : stade de nuit + grille de but + trajectoire dorée -->
+  <defs>
+    <radialGradient id="sky" cx="50%" cy="0%" r="90%">
+      <stop offset="0%" stop-color="#102640"/>
+      <stop offset="60%" stop-color="#0B1B2F"/>
+      <stop offset="100%" stop-color="#07111F"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="url(#sky)"/>
+  <rect x="8" y="8" width="496" height="496" rx="90" fill="none" stroke="#23415F" stroke-width="3"/>
+
+  <!-- Grille de but / filet (évoque aussi la data) -->
+  <g stroke="#23415F" stroke-width="3" opacity="0.85">
+    <rect x="120" y="150" width="272" height="212" rx="10" fill="none"/>
+    <line x1="120" y1="203" x2="392" y2="203"/>
+    <line x1="120" y1="256" x2="392" y2="256"/>
+    <line x1="120" y1="309" x2="392" y2="309"/>
+    <line x1="188" y1="150" x2="188" y2="362"/>
+    <line x1="256" y1="150" x2="256" y2="362"/>
+    <line x1="324" y1="150" x2="324" y2="362"/>
+  </g>
+
+  <!-- Trajectoire de tir dorée vers la lucarne -->
+  <path d="M104 408 C 200 360, 300 250, 372 178" fill="none"
+        stroke="#F2C14E" stroke-width="14" stroke-linecap="round"/>
+  <!-- Impact du but (point doré) -->
+  <circle cx="372" cy="178" r="18" fill="#F2C14E"/>
+  <circle cx="372" cy="178" r="30" fill="none" stroke="#F2C14E" stroke-width="3" opacity="0.4"/>
+
+  <!-- Ballon au départ du tir -->
+  <circle cx="104" cy="408" r="20" fill="#F4F7FA"/>
+</svg>

@@ -30,7 +30,7 @@ const selected = new Set();
 // Le n° du but est calculé chronologiquement (cf. assignNumbers) : le tout
 // premier but de la carrière porte le n°1, le plus récent le n°N.
 const FIELDS = [
-  ['goalNumber', 'N° du but', (g) => (g._num != null ? '#' + g._num : '')],
+  ['goalNumber', 'N° du but', (g) => (g._num != null ? formatGoalNumber(g._num) : '')],
   ['date', 'Date', (g) => formatDate(g.date)],
   ['team', 'Équipe de Messi', (g) => g.team],
   ['opponent', 'Adversaire', (g) => g.opponent],
@@ -48,12 +48,13 @@ const FIELDS = [
 ];
 
 // Données principales affichées directement sur la ligne : n° du but,
-// adversaire, compétition. Tout le reste est révélé via « Détails ».
-// (date, équipe, minute, type, vidéo… → données complémentaires.)
-const DETAIL_KEYS = [
-  'date', 'team', 'minute', 'goalType', 'video',
-  'city', 'stadium', 'position', 'bodyPart', 'placement',
-  'assist', 'goalkeeper', 'source',
+// adversaire, compétition. Tout le reste est révélé via « Détails », organisé
+// en blocs façon fiche d'archive (Contexte, Action, Acteurs, Preuves).
+const DETAIL_GROUPS = [
+  ['Contexte', ['date', 'team', 'competition', 'city', 'stadium']],
+  ['Action', ['minute', 'goalType', 'bodyPart', 'position', 'placement']],
+  ['Acteurs', ['assist', 'goalkeeper']],
+  ['Preuves', ['video', 'source']],
 ];
 
 const $ = (sel) => document.querySelector(sel);
@@ -83,6 +84,11 @@ function sourceLabel(url) {
   } catch {
     return url;
   }
+}
+
+// Numéro chronologique formaté comme une donnée de collection : #001, #120, #600
+function formatGoalNumber(n) {
+  return '#' + String(n).padStart(3, '0');
 }
 
 function formatDate(iso) {
@@ -185,7 +191,7 @@ async function init() {
     await loadStats();
     await loadGoals();
   } catch (e) {
-    showToast(e.message, true);
+    showToast("Une erreur empêche de charger l'archive. Réessayez plus tard.", true);
   }
 }
 
@@ -275,7 +281,7 @@ async function loadGoals() {
     $('#result-count').textContent =
       goals.length + (goals.length > 1 ? ' buts trouvés' : ' but trouvé');
   } catch (e) {
-    showToast(e.message, true);
+    showToast("Une erreur empêche de charger l'archive. Réessayez plus tard.", true);
   }
 }
 
@@ -283,15 +289,21 @@ function renderGoals(goals) {
   const body = $('#goals-body');
   $('#empty-state').hidden = goals.length > 0;
   body.innerHTML = goals.map((g) => {
-    const checked = selected.has(g.id) ? 'checked' : '';
-    const details = DETAIL_KEYS.map((k) => detailItem(k, g)).join('');
-    return `<tr class="goal-row" data-id="${escapeHtml(g.id)}">
-      <td class="col-compare" data-label="Comparer"><input type="checkbox" class="compare-check" data-id="${escapeHtml(g.id)}" ${checked} aria-label="Sélectionner pour comparer" /></td>
-      <td data-label="N°">${g._num != null ? '#' + escapeHtml(g._num) : '—'}</td>
+    const isSel = selected.has(g.id);
+    const checked = isSel ? 'checked' : '';
+    const details = DETAIL_GROUPS.map(([title, keys]) =>
+      `<div class="detail-block-title">${title}</div>` + keys.map((k) => detailItem(k, g)).join('')
+    ).join('');
+    const num = g._num != null
+      ? `<span class="goal-no">${escapeHtml(formatGoalNumber(g._num))}</span>`
+      : '—';
+    return `<tr class="goal-row${isSel ? ' selected' : ''}" data-id="${escapeHtml(g.id)}">
+      <td class="col-compare" data-label="Comparer"><input type="checkbox" class="compare-check" data-id="${escapeHtml(g.id)}" ${checked} aria-label="Sélectionner ce but pour comparer" /></td>
+      <td data-label="N°">${num}</td>
       <td class="opponent" data-label="Adversaire">${escapeHtml(g.opponent)}</td>
       <td data-label="Compétition">${escapeHtml(g.competition) || '—'}</td>
       <td class="col-details" data-label=""><button class="btn-icon toggle-details" data-action="toggle" aria-expanded="false">▾ Détails</button></td>
-      <td class="col-action actions" data-label=""><button class="btn-icon" data-action="edit" title="Proposer une correction">✏️ Proposer</button></td>
+      <td class="col-action actions" data-label=""><button class="btn-icon" data-action="edit" title="Proposer une correction">✎ Corriger</button></td>
     </tr>
     <tr class="details-row" hidden>
       <td colspan="6"><div class="details-grid">${details}</div></td>
@@ -302,25 +314,37 @@ function renderGoals(goals) {
 // Rend une donnée complémentaire (label + valeur) pour le menu déroulant.
 // Cas particuliers : vidéo et source → lien cliquable ; type de but → badge.
 function detailItem(key, g) {
+  // Vidéo : badge bleu avec texte explicite (jamais d'icône seule), pas de
+  // rouge si absente — l'absence de vidéo n'est pas une erreur.
   if (key === 'video') {
     const u = safeUrl(g.videoUrl);
     const value = u
-      ? `<a class="video-link" href="${escapeHtml(u)}" target="_blank" rel="noopener noreferrer">▶ Voir</a>`
-      : '—';
+      ? `<a class="video-link badge badge-video" href="${escapeHtml(u)}" target="_blank" rel="noopener noreferrer">▶ Voir la vidéo</a>`
+      : '<span class="muted">—</span>';
     return `<div class="detail-item"><span class="detail-label">Vidéo</span><span class="detail-value">${value}</span></div>`;
   }
   const f = FIELDS.find((x) => x[0] === key);
   const raw = f[2](g);
   let value;
-  if (key === 'source' && safeUrl(raw)) {
-    value = `<a class="video-link" href="${escapeHtml(safeUrl(raw))}" target="_blank" rel="noopener noreferrer">${escapeHtml(sourceLabel(raw))}</a>`;
+  // Source : verte si disponible (lien ou texte), orange « À vérifier » sinon.
+  if (key === 'source') {
+    if (safeUrl(raw)) {
+      value = `<a class="source-link" href="${escapeHtml(safeUrl(raw))}" target="_blank" rel="noopener noreferrer">` +
+        `<span class="badge badge-source-ok">Sourcé</span> ${escapeHtml(sourceLabel(raw))}</a>`;
+    } else if (raw) {
+      value = `<span class="badge badge-source-ok">Sourcé</span> ${escapeHtml(raw)}`;
+    } else {
+      value = '<span class="badge badge-source-todo">À vérifier</span>';
+    }
   } else if (key === 'goalType' && raw) {
     const typeClass = 'type-' + g.goalType.replace(/\s+/g, '.');
     value = `<span class="badge ${typeClass}">${escapeHtml(raw)}</span>`;
   } else {
-    value = escapeHtml(raw) || '—';
+    value = escapeHtml(raw) || '<span class="muted">Non renseigné</span>';
   }
-  return `<div class="detail-item"><span class="detail-label">${f[1]}</span><span class="detail-value">${value}</span></div>`;
+  const monoKeys = ['date', 'minute'];
+  const cls = 'detail-value' + (monoKeys.includes(key) ? ' is-mono' : '');
+  return `<div class="detail-item"><span class="detail-label">${f[1]}</span><span class="${cls}">${value}</span></div>`;
 }
 
 // ---------------------------------------------------------------------------
@@ -337,6 +361,7 @@ function updateCompareBar() {
 function clearCompare() {
   selected.clear();
   document.querySelectorAll('.compare-check').forEach((c) => { c.checked = false; });
+  document.querySelectorAll('.goal-row.selected').forEach((r) => r.classList.remove('selected'));
   updateCompareBar();
 }
 
@@ -348,19 +373,23 @@ async function openCompare() {
 
   const videoCell = (g) => {
     const u = safeUrl(g.videoUrl);
-    return u ? `<a class="video-link" href="${escapeHtml(u)}" target="_blank" rel="noopener noreferrer">▶ Voir</a>` : '—';
+    return u ? `<a class="video-link" href="${escapeHtml(u)}" target="_blank" rel="noopener noreferrer">▶ Voir la vidéo</a>` : '—';
   };
+  // Marqueur accessible : ne pas signaler une différence par la seule couleur.
+  const diffTag = '<span class="diff-tag">différent</span>';
   const head = `<thead><tr><th>Champ</th>
-    <th>${escapeHtml(a.opponent)}<br><small>${formatDate(a.date)}</small></th>
-    <th>${escapeHtml(b.opponent)}<br><small>${formatDate(b.date)}</small></th></tr></thead>`;
+    <th>But ${escapeHtml(a._num != null ? formatGoalNumber(a._num) : '')}<br><small>${escapeHtml(a.opponent)} · ${formatDate(a.date)}</small></th>
+    <th>But ${escapeHtml(b._num != null ? formatGoalNumber(b._num) : '')}<br><small>${escapeHtml(b.opponent)} · ${formatDate(b.date)}</small></th></tr></thead>`;
   const rows = FIELDS.map(([key, label, fmt]) => {
     const va = String(fmt(a) || '');
     const vb = String(fmt(b) || '');
-    const diff = va !== vb ? ' class="diff"' : '';
-    return `<tr${diff}><th>${label}</th><td>${escapeHtml(va) || '—'}</td><td>${escapeHtml(vb) || '—'}</td></tr>`;
+    const isDiff = va !== vb;
+    return `<tr${isDiff ? ' class="diff"' : ''}><th>${label}${isDiff ? diffTag : ''}</th>` +
+      `<td>${escapeHtml(va) || '—'}</td><td>${escapeHtml(vb) || '—'}</td></tr>`;
   }).join('');
-  const videoRow = `<tr${safeUrl(a.videoUrl) !== safeUrl(b.videoUrl) ? ' class="diff"' : ''}>` +
-    `<th>Vidéo</th><td>${videoCell(a)}</td><td>${videoCell(b)}</td></tr>`;
+  const videoDiff = safeUrl(a.videoUrl) !== safeUrl(b.videoUrl);
+  const videoRow = `<tr${videoDiff ? ' class="diff"' : ''}>` +
+    `<th>Vidéo${videoDiff ? diffTag : ''}</th><td>${videoCell(a)}</td><td>${videoCell(b)}</td></tr>`;
 
   $('#compare-table').innerHTML = head + '<tbody>' + rows + videoRow + '</tbody>';
   $('#compare-dialog').showModal();
@@ -390,7 +419,7 @@ async function loadStats() {
 function openDialog(goal = null) {
   editingId = goal ? goal.id : null;
   $('#dialog-title').textContent = goal ? 'Proposer une correction' : 'Proposer un but';
-  $('#btn-save').textContent = 'Proposer sur GitHub';
+  $('#btn-save').textContent = 'Créer une proposition GitHub';
 
   const form = $('#goal-form');
   form.reset();
@@ -446,12 +475,18 @@ function submitForm(e) {
   e.preventDefault();
   const payload = Object.fromEntries(new FormData($('#goal-form')).entries());
 
-  if (!payload.date || !payload.opponent) {
+  const errors = [];
+  if (!payload.date) errors.push('La date est obligatoire.');
+  if (!payload.opponent) errors.push("L'équipe adverse est obligatoire.");
+  // Le lien vidéo, s'il est renseigné, doit être une URL http(s).
+  if (payload.videoUrl && !safeUrl(payload.videoUrl)) {
+    errors.push('Le lien doit commencer par http:// ou https://.');
+  }
+
+  if (errors.length) {
     const box = $('#form-errors');
-    box.innerHTML = '<strong>Champs requis manquants :</strong><ul>' +
-      (!payload.date ? '<li>La date est obligatoire.</li>' : '') +
-      (!payload.opponent ? "<li>L'équipe adverse est obligatoire.</li>" : '') +
-      '</ul>';
+    box.innerHTML = '<strong>Merci de corriger :</strong><ul>' +
+      errors.map((m) => `<li>${m}</li>`).join('') + '</ul>';
     box.hidden = false;
     return;
   }
@@ -497,6 +532,7 @@ function wireEvents() {
   $('#goals-body').addEventListener('change', (e) => {
     const cb = e.target.closest('.compare-check');
     if (!cb) return;
+    const row = cb.closest('.goal-row');
     if (cb.checked) {
       if (selected.size >= 2) {
         cb.checked = false;
@@ -504,8 +540,10 @@ function wireEvents() {
         return;
       }
       selected.add(cb.dataset.id);
+      if (row) row.classList.add('selected');
     } else {
       selected.delete(cb.dataset.id);
+      if (row) row.classList.remove('selected');
     }
     updateCompareBar();
   });

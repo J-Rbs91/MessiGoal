@@ -6,10 +6,10 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#000000" />
+  <meta name="theme-color" content="#07111F" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="MessiGoal" />
   <title>MessiGoal — Tous les buts de Lionel Messi</title>
   <meta name="description" content="Base de données participative recensant tous les buts de Lionel Messi : date, lieu, stade, adversaire, minute, partie du corps, type, compétition, gardien et vidéo." />
@@ -21,26 +21,43 @@
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <h1>⚽ MessiGoal</h1>
-      <p class="tagline">La base participative de tous les buts de Lionel Messi</p>
+      <h1>
+        <!-- Monogramme MG : grille de but (M) + trajectoire de ballon vers la lucarne (G) -->
+        <svg class="brand-mark" width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" fill="none">
+          <rect x="2" y="6" width="20" height="20" rx="3" stroke="#23415F" stroke-width="1.5"/>
+          <path d="M8 6v20M14.66 6v20M2 12.66h20M2 19.33h20" stroke="#23415F" stroke-width="1"/>
+          <path d="M6 30C12 21 22 16 30 13" stroke="#F2C14E" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="30" cy="13" r="2.4" fill="#F2C14E"/>
+        </svg>
+        MessiGoal
+      </h1>
+      <p class="tagline">L'archive participative de tous les buts de Lionel Messi</p>
     </div>
   </header>
 
   <main class="container">
+    <!-- Hero / promesse -->
+    <section class="hero" aria-label="Présentation">
+      <div class="hero-text">
+        <h2>Tous les buts de Messi, <span class="accent">classés, vérifiés, comparables.</span></h2>
+        <p>Une archive participative statique, sourcée et installable, construite but après but par la communauté.</p>
+      </div>
+    </section>
+
     <!-- Statistiques -->
     <section class="stats" id="stats" aria-label="Statistiques">
-      <div class="stat-card"><span class="stat-value" id="stat-total">—</span><span class="stat-label">Buts recensés</span></div>
-      <div class="stat-card"><span class="stat-value" id="stat-video">—</span><span class="stat-label">Avec vidéo</span></div>
-      <div class="stat-card"><span class="stat-value" id="stat-comp">—</span><span class="stat-label">Compétitions</span></div>
-      <div class="stat-card"><span class="stat-value" id="stat-opp">—</span><span class="stat-label">Adversaires</span></div>
+      <div class="stat-card is-primary"><span class="stat-value" id="stat-total">—</span><span class="stat-label">Buts recensés</span><span class="stat-sub">Archive actuelle</span></div>
+      <div class="stat-card is-video"><span class="stat-value" id="stat-video">—</span><span class="stat-label">Avec vidéo</span><span class="stat-sub">Preuves disponibles</span></div>
+      <div class="stat-card"><span class="stat-value" id="stat-comp">—</span><span class="stat-label">Compétitions</span><span class="stat-sub">Toutes confondues</span></div>
+      <div class="stat-card"><span class="stat-value" id="stat-opp">—</span><span class="stat-label">Adversaires</span><span class="stat-sub">Équipes affrontées</span></div>
     </section>
 
     <div class="toolbar">
       <div class="toolbar-actions">
-        <button class="btn btn-primary" id="btn-add">＋ Ajouter un but</button>
-        <button class="btn" id="btn-install" hidden>📲 Installer l'app</button>
+        <button class="btn btn-primary" id="btn-add">Proposer une contribution</button>
+        <button class="btn" id="btn-install" hidden>Installer l'app</button>
       </div>
-      <p class="contrib-note" id="contrib-note">Site participatif : proposez vos <strong>ajouts</strong> et <strong>corrections</strong> via GitHub (validés par la communauté).</p>
+      <p class="contrib-note" id="contrib-note">Archive participative : proposez vos <strong>ajouts</strong> et <strong>corrections</strong> via GitHub. La communauté vérifie avant intégration.</p>
     </div>
 
     <!-- Filtres -->
@@ -65,17 +82,20 @@
       <table class="goals-table">
         <thead>
           <tr>
-            <th class="col-compare" title="Sélectionner pour comparer">⚖</th>
+            <th class="col-compare"><span class="visually-hidden">Comparer</span>⚖</th>
             <th>N°</th>
             <th>Adversaire</th>
             <th>Compétition</th>
-            <th class="col-details"></th>
-            <th class="col-action"></th>
+            <th class="col-details"><span class="visually-hidden">Détails</span></th>
+            <th class="col-action"><span class="visually-hidden">Action</span></th>
           </tr>
         </thead>
         <tbody id="goals-body"></tbody>
       </table>
-      <p class="empty-state" id="empty-state" hidden>Aucun but ne correspond. Soyez le premier à en ajouter un !</p>
+      <div class="empty-state" id="empty-state" hidden>
+        <p class="empty-title">Aucun but ne correspond aux critères sélectionnés.</p>
+        <p class="empty-sub">Essayez de retirer un filtre ou d'élargir votre recherche.</p>
+      </div>
     </div>
   </main>
 
@@ -91,12 +111,12 @@
   <!-- Modale d'installation -->
   <dialog id="install-dialog">
     <div class="compare-head">
-      <h2>📲 Installer MessiGoal</h2>
+      <h2>Installer MessiGoal</h2>
       <button type="button" class="btn" id="install-close">Fermer</button>
     </div>
     <div class="install-body">
       <p id="install-instructions"></p>
-      <p class="install-note">Une fois installée, l'appli s'ouvre en plein écran avec son icône, et fonctionne même hors connexion.</p>
+      <p class="install-note">MessiGoal fonctionne aussi hors connexion. Ajoutez l'app à votre écran d'accueil pour consulter l'archive plus rapidement, en plein écran avec son icône.</p>
     </div>
   </dialog>
 
@@ -114,38 +134,46 @@
   <!-- Modale d'ajout / édition -->
   <dialog id="goal-dialog">
     <form method="dialog" id="goal-form">
-      <h2 id="dialog-title">Ajouter un but</h2>
+      <h2 id="dialog-title">Proposer un but</h2>
+      <p class="form-intro">Votre proposition ouvrira une issue GitHub préremplie. La communauté pourra ensuite vérifier les informations avant intégration dans les données. Les champs marqués <span class="req">*</span> sont obligatoires.</p>
       <div id="form-errors" class="form-errors" hidden></div>
       <div class="form-grid">
+        <p class="form-section-title">Informations principales</p>
         <label>N° du but (en carrière)<input type="number" name="goalNumber" min="1" max="2000" placeholder="457" /></label>
-        <label>Date *<input type="date" name="date" required /></label>
-        <label>Équipe adverse *<input type="text" name="opponent" placeholder="Real Madrid" required /></label>
+        <label>Date <span class="req">*</span><input type="date" name="date" required /></label>
+        <label>Équipe adverse <span class="req">*</span><input type="text" name="opponent" placeholder="Real Madrid" required /></label>
         <label>Équipe de Messi<input type="text" name="team" list="teams-list" placeholder="FC Barcelone, PSG, Inter Miami, Argentine…" /></label>
         <label>Compétition<input type="text" name="competition" list="competitions-list" placeholder="Liga, Ligue des champions…" /></label>
-        <label>Ville / Lieu<input type="text" name="city" placeholder="Barcelone" /></label>
-        <label>Stade<input type="text" name="stadium" placeholder="Camp Nou" /></label>
         <label>Minute<input type="number" name="minute" min="0" max="130" placeholder="87" /></label>
-        <label>Position au tir
-          <select name="position" id="select-position"><option value="">—</option></select>
+
+        <p class="form-section-title">Détail du but</p>
+        <label>Type de but
+          <select name="goalType" id="select-goalType"><option value="">—</option></select>
         </label>
         <label>Partie du corps
           <select name="bodyPart" id="select-bodyPart"><option value="">—</option></select>
         </label>
-        <label>Type de but
-          <select name="goalType" id="select-goalType"><option value="">—</option></select>
+        <label>Position au tir
+          <select name="position" id="select-position"><option value="">—</option></select>
         </label>
         <label>Placement dans le but
           <select name="placement" id="select-placement"><option value="">—</option></select>
         </label>
-        <label>Passe décisive (passeur)<input type="text" name="assist" placeholder="Xavi, Dani Alves…" /></label>
+
+        <p class="form-section-title">Contexte</p>
+        <label>Ville / Lieu<input type="text" name="city" placeholder="Barcelone" /></label>
+        <label>Stade<input type="text" name="stadium" placeholder="Camp Nou" /></label>
         <label>Gardien adverse<input type="text" name="goalkeeper" placeholder="Iker Casillas" /></label>
+        <label>Passe décisive (passeur)<input type="text" name="assist" placeholder="Xavi, Dani Alves…" /></label>
+
+        <p class="form-section-title">Preuves</p>
         <label>Lien vidéo<input type="url" name="videoUrl" placeholder="https://…" /></label>
-        <label class="full">Source de la donnée<input type="text" name="source" list="sources-list" placeholder="Wikipédia, StatsBomb, ou une URL…" /></label>
+        <label>Source de la donnée<input type="text" name="source" list="sources-list" placeholder="Wikipédia, StatsBomb, ou une URL…" /></label>
         <label class="full">Votre nom / pseudo (optionnel)<input type="text" name="contributor" placeholder="Contributeur" /></label>
       </div>
       <div class="form-actions">
         <button type="button" class="btn" id="btn-cancel">Annuler</button>
-        <button type="submit" class="btn btn-primary" id="btn-save">Enregistrer</button>
+        <button type="submit" class="btn btn-primary" id="btn-save">Créer une proposition GitHub</button>
       </div>
     </form>
   </dialog>
