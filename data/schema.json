@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://j-rbs91.github.io/MessiGoal/data/schema.json",
+  "title": "But de Lionel Messi",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["date", "opponent"],
+  "properties": {
+    "id": { "type": "string", "description": "Identifiant (par défaut : nom du fichier)" },
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "team": { "type": "string", "description": "Équipe de Messi au moment du but" },
+    "opponent": { "type": "string", "minLength": 1 },
+    "competition": { "type": "string" },
+    "city": { "type": "string" },
+    "stadium": { "type": "string" },
+    "minute": { "type": ["integer", "null"], "minimum": 0, "maximum": 130 },
+    "bodyPart": { "type": "string", "enum": ["", "Pied gauche", "Pied droit", "Tête", "Autre"] },
+    "goalType": { "type": "string", "enum": ["", "En jeu", "Pénalty", "Coup franc", "Contre son camp"] },
+    "position": { "type": "string", "enum": ["", "Dans la surface", "Entrée de la surface", "Hors de la surface", "Loin du but (+30 m)"] },
+    "placement": { "type": "string", "enum": ["", "Petit filet gauche", "Petit filet droit", "Lucarne gauche", "Lucarne droite", "Sous la barre", "Ras de terre", "Poteau rentrant", "Plein centre", "Panenka"] },
+    "assist": { "type": "string", "description": "Passeur décisif" },
+    "goalkeeper": { "type": "string" },
+    "videoUrl": { "type": "string", "pattern": "^(|https?://\\S+)$" },
+    "contributor": { "type": "string" }
+  }
+}

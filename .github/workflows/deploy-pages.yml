@@ -22,19 +22,25 @@ jobs:
       - name: Récupération du dépôt
         uses: actions/checkout@v4
 
+      - name: Configuration de Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Construction des données (agrégation + validation)
+        run: node scripts/build-data.js
+
       - name: Assemblage du site statique
         run: |
           mkdir -p _site
           cp public/index.html public/styles.css public/app.js _site/
-          # Données servies en lecture par la version statique
-          cp data/goals.json _site/goals.json
-          # Désactive le traitement Jekyll
+          cp public/manifest.webmanifest public/sw.js _site/
+          cp -r public/icons _site/icons
+          cp public/goals.json _site/goals.json
           touch _site/.nojekyll
 
       - name: Configuration de Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Téléversement de l'artefact
         uses: actions/upload-pages-artifact@v3

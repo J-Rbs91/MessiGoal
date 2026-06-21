@@ -1,23 +1,27 @@
 'use strict';
 
 // ---------------------------------------------------------------------------
-// Configuration
+// Application 100 % statique (GitHub Pages, sans backend).
+// Les buts sont lus depuis goals.json (généré à partir de data/goals/*.json).
+// Les ajouts / corrections ouvrent une issue GitHub pré-remplie : la
+// communauté valide, puis le but est ajouté au dépôt sous forme de fichier.
 // ---------------------------------------------------------------------------
-const DEFAULT_META = {
+
+const META = {
   bodyParts: ['Pied gauche', 'Pied droit', 'Tête', 'Autre'],
   goalTypes: ['En jeu', 'Pénalty', 'Coup franc', 'Contre son camp'],
+  positions: ['Dans la surface', 'Entrée de la surface', 'Hors de la surface', 'Loin du but (+30 m)'],
+  placements: [
+    'Petit filet gauche', 'Petit filet droit', 'Lucarne gauche', 'Lucarne droite',
+    'Sous la barre', 'Ras de terre', 'Poteau rentrant', 'Plein centre', 'Panenka',
+  ],
 };
 
-// Dépôt GitHub : utilisé en mode statique (GitHub Pages) pour proposer
-// les ajouts / corrections sous forme d'issues à valider par la communauté.
+// Dépôt GitHub cible pour les contributions
 const GITHUB = { owner: 'J-Rbs91', repo: 'MessiGoal' };
 
-let META = { ...DEFAULT_META };
 let editingId = null;
-
-// Store : en mode statique, aucune API — on lit goals.json et on calcule
-// tout côté client. En mode dynamique, on interroge le backend.
-const Store = { static: false, cache: null };
+const Store = { cache: null };
 
 const $ = (sel) => document.querySelector(sel);
 
@@ -49,26 +53,13 @@ function showToast(message, isError = false) {
   showToast._t = setTimeout(() => { t.hidden = true; }, 3500);
 }
 
-async function api(path, options = {}) {
-  const res = await fetch(path, {
-    headers: { 'Content-Type': 'application/json' },
-    ...options,
-  });
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) {
-    const msg = data.errors ? data.errors.join(' ') : data.error || 'Erreur';
-    throw new Error(msg);
-  }
-  return data;
-}
-
 // ---------------------------------------------------------------------------
-// Accès aux données (mode statique vs dynamique)
+// Données
 // ---------------------------------------------------------------------------
 async function getAllGoals() {
   if (!Store.cache) {
     const res = await fetch('./goals.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error('Données indisponibles');
+    if (!res.ok) throw new Error('Données indisponibles (goals.json introuvable)');
     Store.cache = await res.json();
   }
   return Store.cache;
@@ -100,46 +91,35 @@ function applyFilters(goals, q) {
 
 function computeStats(goals) {
   const byCompetition = {};
-  const byOpponent = {};
+  const opponents = new Set();
   let withVideo = 0;
   for (const g of goals) {
     if (g.competition) byCompetition[g.competition] = (byCompetition[g.competition] || 0) + 1;
-    if (g.opponent) byOpponent[g.opponent] = (byOpponent[g.opponent] || 0) + 1;
+    if (g.opponent) opponents.add(g.opponent);
     if (g.videoUrl) withVideo++;
   }
-  return {
-    total: goals.length,
-    withVideo,
-    byCompetition,
-    opponents: Object.keys(byOpponent).length,
-  };
+  return { total: goals.length, withVideo, byCompetition, opponents: opponents.size };
 }
 
 // ---------------------------------------------------------------------------
-// Chargement initial : détection du mode
+// Initialisation
 // ---------------------------------------------------------------------------
 async function init() {
-  try {
-    META = await api('/api/meta'); // backend joignable -> mode dynamique
-    Store.static = false;
-  } catch (e) {
-    Store.static = true; // pas de backend (GitHub Pages) -> mode statique
-    META = { ...DEFAULT_META };
-  }
-
-  if (Store.static) {
-    document.body.classList.add('static-mode');
-    $('#contrib-note').innerHTML =
-      'Site participatif : proposez vos <strong>ajouts</strong> et <strong>corrections</strong> via GitHub (validés par la communauté).';
-  }
-
   populateSelect($('#filter-bodyPart'), META.bodyParts, 'Toutes parties du corps');
   populateSelect($('#filter-goalType'), META.goalTypes, 'Tous types de but');
   populateSelect($('#select-bodyPart'), META.bodyParts, '—');
   populateSelect($('#select-goalType'), META.goalTypes, '—');
+  populateSelect($('#select-position'), META.positions, '—');
+  populateSelect($('#select-placement'), META.placements, '—');
 
   wireEvents();
-  await Promise.all([loadGoals(), loadStats()]);
+  try {
+    await getAllGoals();
+    await loadStats();
+    await loadGoals();
+  } catch (e) {
+    showToast(e.message, true);
+  }
 }
 
 function populateSelect(select, values, placeholder) {
@@ -163,18 +143,6 @@ function currentQueryObj() {
   };
 }
 
-function currentQuery() {
-  const o = currentQueryObj();
-  const params = new URLSearchParams();
-  if (o.q) params.set('q', o.q);
-  if (o.competition) params.set('competition', o.competition);
-  if (o.bodyPart) params.set('bodyPart', o.bodyPart);
-  if (o.goalType) params.set('goalType', o.goalType);
-  if (o.hasVideo) params.set('hasVideo', 'true');
-  params.set('sort', o.sort);
-  return params.toString();
-}
-
 let debounceTimer;
 function debouncedLoad() {
   clearTimeout(debounceTimer);
@@ -182,22 +150,14 @@ function debouncedLoad() {
 }
 
 // ---------------------------------------------------------------------------
-// Liste des buts
+// Rendu de la liste
 // ---------------------------------------------------------------------------
 async function loadGoals() {
   try {
-    let goals, count;
-    if (Store.static) {
-      goals = applyFilters(await getAllGoals(), currentQueryObj());
-      count = goals.length;
-    } else {
-      const data = await api('/api/goals?' + currentQuery());
-      goals = data.goals;
-      count = data.count;
-    }
+    const goals = applyFilters(await getAllGoals(), currentQueryObj());
     renderGoals(goals);
     $('#result-count').textContent =
-      count + (count > 1 ? ' buts trouvés' : ' but trouvé');
+      goals.length + (goals.length > 1 ? ' buts trouvés' : ' but trouvé');
   } catch (e) {
     showToast(e.message, true);
   }
@@ -206,26 +166,28 @@ async function loadGoals() {
 function renderGoals(goals) {
   const body = $('#goals-body');
   $('#empty-state').hidden = goals.length > 0;
-  const editLabel = Store.static ? '✏️ Proposer' : '✏️ Corriger';
   body.innerHTML = goals.map((g) => {
     const typeClass = g.goalType ? 'type-' + g.goalType.replace(/\s+/g, '.') : '';
     const place = [g.stadium, g.city].filter(Boolean).join(' · ');
     const video = g.videoUrl
       ? `<a class="video-link" href="${escapeHtml(g.videoUrl)}" target="_blank" rel="noopener">▶ Voir</a>`
       : '<span class="muted">—</span>';
-    return `<tr data-id="${g.id}">
+    return `<tr data-id="${escapeHtml(g.id)}">
       <td data-label="Date">${formatDate(g.date)}</td>
+      <td data-label="Équipe">${escapeHtml(g.team) || '—'}</td>
       <td class="opponent" data-label="Adversaire">${escapeHtml(g.opponent)}</td>
       <td data-label="Compétition">${escapeHtml(g.competition) || '—'}</td>
       <td data-label="Lieu / Stade">${escapeHtml(place) || '—'}</td>
       <td data-label="Minute">${g.minute != null ? escapeHtml(g.minute) + "'" : '—'}</td>
+      <td data-label="Position">${escapeHtml(g.position) || '—'}</td>
       <td data-label="Partie du corps">${escapeHtml(g.bodyPart) || '—'}</td>
       <td data-label="Type">${g.goalType ? `<span class="badge ${typeClass}">${escapeHtml(g.goalType)}</span>` : '—'}</td>
+      <td data-label="Placement">${escapeHtml(g.placement) || '—'}</td>
+      <td data-label="Passe décisive">${escapeHtml(g.assist) || '—'}</td>
       <td data-label="Gardien">${escapeHtml(g.goalkeeper) || '—'}</td>
       <td data-label="Vidéo">${video}</td>
       <td class="actions" data-label="">
-        <button class="btn-icon" data-action="edit" title="Proposer une correction">${editLabel}</button>
-        <button class="btn-icon" data-action="delete" title="Supprimer">🗑️</button>
+        <button class="btn-icon" data-action="edit" title="Proposer une correction">✏️ Proposer</button>
       </td>
     </tr>`;
   }).join('');
@@ -236,47 +198,30 @@ function renderGoals(goals) {
 // ---------------------------------------------------------------------------
 async function loadStats() {
   try {
-    let s;
-    if (Store.static) {
-      const raw = computeStats(await getAllGoals());
-      s = { ...raw };
-    } else {
-      const api_s = await api('/api/stats');
-      s = {
-        total: api_s.total,
-        withVideo: api_s.withVideo,
-        byCompetition: api_s.byCompetition,
-        opponents: new Set(api_s.topOpponents.map((o) => o.name)).size + (api_s.total > 10 ? '+' : ''),
-      };
-    }
+    const s = computeStats(await getAllGoals());
     $('#stat-total').textContent = s.total;
     $('#stat-video').textContent = s.withVideo;
     $('#stat-comp').textContent = Object.keys(s.byCompetition).length;
     $('#stat-opp').textContent = s.opponents;
 
-    const sel = $('#filter-competition');
     const comps = Object.keys(s.byCompetition).sort();
-    populateSelect(sel, comps, 'Toutes compétitions');
+    populateSelect($('#filter-competition'), comps, 'Toutes compétitions');
     $('#competitions-list').innerHTML =
       comps.map((c) => `<option value="${escapeHtml(c)}">`).join('');
   } catch (e) { /* silencieux */ }
 }
 
 // ---------------------------------------------------------------------------
-// Modale ajout / édition
+// Modale ajout / correction → contribution GitHub
 // ---------------------------------------------------------------------------
 function openDialog(goal = null) {
   editingId = goal ? goal.id : null;
-  const isEdit = !!goal;
-  $('#dialog-title').textContent = Store.static
-    ? (isEdit ? 'Proposer une correction' : 'Proposer un but')
-    : (isEdit ? 'Modifier / corriger un but' : 'Ajouter un but');
-  $('#btn-save').textContent = Store.static ? 'Proposer sur GitHub' : 'Enregistrer';
+  $('#dialog-title').textContent = goal ? 'Proposer une correction' : 'Proposer un but';
+  $('#btn-save').textContent = 'Proposer sur GitHub';
 
   const form = $('#goal-form');
   form.reset();
   $('#form-errors').hidden = true;
-
   if (goal) {
     for (const [k, v] of Object.entries(goal)) {
       if (form.elements[k]) form.elements[k].value = v ?? '';
@@ -285,7 +230,6 @@ function openDialog(goal = null) {
   $('#goal-dialog').showModal();
 }
 
-// Construit une issue GitHub pré-remplie (mode statique)
 function openGitHubContribution(payload, id) {
   const isEdit = !!id;
   const title = (isEdit ? 'Correction : ' : 'Nouveau but : ') +
@@ -293,13 +237,17 @@ function openGitHubContribution(payload, id) {
 
   const rows = [
     ['Date', payload.date],
+    ['Équipe de Messi', payload.team],
     ['Équipe adverse', payload.opponent],
     ['Compétition', payload.competition],
     ['Ville / Lieu', payload.city],
     ['Stade', payload.stadium],
     ['Minute', payload.minute],
+    ['Position au tir', payload.position],
     ['Partie du corps', payload.bodyPart],
     ['Type de but', payload.goalType],
+    ['Placement dans le but', payload.placement],
+    ['Passe décisive', payload.assist],
     ['Gardien adverse', payload.goalkeeper],
     ['Lien vidéo', payload.videoUrl],
     ['Contributeur', payload.contributor],
@@ -319,12 +267,10 @@ function openGitHubContribution(payload, id) {
   window.open(url, '_blank', 'noopener');
 }
 
-async function submitForm(e) {
+function submitForm(e) {
   e.preventDefault();
-  const form = $('#goal-form');
-  const payload = Object.fromEntries(new FormData(form).entries());
+  const payload = Object.fromEntries(new FormData($('#goal-form')).entries());
 
-  // Validation minimale partagée
   if (!payload.date || !payload.opponent) {
     const box = $('#form-errors');
     box.innerHTML = '<strong>Champs requis manquants :</strong><ul>' +
@@ -335,57 +281,13 @@ async function submitForm(e) {
     return;
   }
 
-  if (Store.static) {
-    openGitHubContribution(payload, editingId);
-    $('#goal-dialog').close();
-    showToast('Merci ! Finalisez votre contribution sur GitHub.');
-    return;
-  }
-
-  try {
-    if (editingId) {
-      await api('/api/goals/' + editingId, { method: 'PUT', body: JSON.stringify(payload) });
-      showToast('But mis à jour. Merci pour votre contribution !');
-    } else {
-      await api('/api/goals', { method: 'POST', body: JSON.stringify(payload) });
-      showToast('But ajouté. Merci pour votre contribution !');
-    }
-    $('#goal-dialog').close();
-    await Promise.all([loadGoals(), loadStats()]);
-  } catch (err) {
-    const box = $('#form-errors');
-    box.innerHTML = '<strong>Impossible d\'enregistrer :</strong><ul>' +
-      err.message.split('. ').filter(Boolean).map((m) => `<li>${escapeHtml(m)}</li>`).join('') +
-      '</ul>';
-    box.hidden = false;
-  }
-}
-
-async function deleteGoal(id) {
-  if (Store.static) {
-    // Pas de suppression directe en statique : on propose un signalement
-    const goal = (await getAllGoals()).find((g) => g.id === id) || {};
-    const title = 'Suppression proposée : ' + (goal.opponent || '?') + ' (' + (goal.date || '?') + ')';
-    const body = '> Demande de suppression du but `' + id + '` (doublon ou erreur).';
-    window.open(
-      `https://github.com/${GITHUB.owner}/${GITHUB.repo}/issues/new` +
-      `?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}&labels=${encodeURIComponent('contribution')}`,
-      '_blank', 'noopener'
-    );
-    return;
-  }
-  if (!confirm('Supprimer ce but ? Cette action est définitive.')) return;
-  try {
-    await api('/api/goals/' + id, { method: 'DELETE' });
-    showToast('But supprimé.');
-    await Promise.all([loadGoals(), loadStats()]);
-  } catch (e) {
-    showToast(e.message, true);
-  }
+  openGitHubContribution(payload, editingId);
+  $('#goal-dialog').close();
+  showToast('Merci ! Finalisez votre contribution sur GitHub.');
 }
 
 // ---------------------------------------------------------------------------
-// Câblage des événements
+// Événements
 // ---------------------------------------------------------------------------
 function wireEvents() {
   $('#btn-add').addEventListener('click', () => openDialog());
@@ -400,14 +302,18 @@ function wireEvents() {
     const btn = e.target.closest('button[data-action]');
     if (!btn) return;
     const id = btn.closest('tr').dataset.id;
-    if (btn.dataset.action === 'delete') return deleteGoal(id);
     if (btn.dataset.action === 'edit') {
-      const goal = Store.static
-        ? (await getAllGoals()).find((g) => g.id === id)
-        : await api('/api/goals/' + id);
+      const goal = (await getAllGoals()).find((g) => g.id === id);
       openDialog(goal);
     }
   });
 }
 
 document.addEventListener('DOMContentLoaded', init);
+
+// Enregistrement du service worker (PWA / hors-ligne)
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => { /* ignoré */ });
+  });
+}

@@ -1,0 +1,25 @@
+name: "🐛 Signaler un bug"
+description: Un problème sur le site ou les données.
+title: "Bug : "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description du problème
+      placeholder: Décrivez ce qui ne va pas.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Étapes pour reproduire
+      placeholder: |
+        1. Aller sur …
+        2. Cliquer sur …
+        3. Observer …
+  - type: input
+    id: environment
+    attributes:
+      label: Environnement
+      placeholder: "Navigateur, appareil (ex. Chrome sur Android)"

@@ -9,7 +9,9 @@
   <title>MessiGoal — Tous les buts de Lionel Messi</title>
   <meta name="description" content="Base de données participative recensant tous les buts de Lionel Messi : date, lieu, stade, adversaire, minute, partie du corps, type, compétition, gardien et vidéo." />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icons/icon-180.png" />
 </head>
 <body>
   <header class="site-header">
@@ -30,7 +32,7 @@
 
     <div class="toolbar">
       <button class="btn btn-primary" id="btn-add">＋ Ajouter un but</button>
-      <p class="contrib-note" id="contrib-note">Site participatif : chacun peut <strong>ajouter</strong>, <strong>corriger</strong> et <strong>compléter</strong> les buts.</p>
+      <p class="contrib-note" id="contrib-note">Site participatif : proposez vos <strong>ajouts</strong> et <strong>corrections</strong> via GitHub (validés par la communauté).</p>
     </div>
 
     <!-- Filtres -->
@@ -55,12 +57,16 @@
         <thead>
           <tr>
             <th>Date</th>
+            <th>Équipe</th>
             <th>Adversaire</th>
             <th>Compétition</th>
             <th>Lieu / Stade</th>
             <th>Min.</th>
+            <th>Position</th>
             <th>Partie du corps</th>
             <th>Type</th>
+            <th>Placement</th>
+            <th>Passe déc.</th>
             <th>Gardien</th>
             <th>Vidéo</th>
             <th></th>
@@ -80,16 +86,24 @@
       <div class="form-grid">
         <label>Date *<input type="date" name="date" required /></label>
         <label>Équipe adverse *<input type="text" name="opponent" placeholder="Real Madrid" required /></label>
+        <label>Équipe de Messi<input type="text" name="team" list="teams-list" placeholder="FC Barcelone, PSG, Inter Miami, Argentine…" /></label>
         <label>Compétition<input type="text" name="competition" list="competitions-list" placeholder="Liga, Ligue des champions…" /></label>
         <label>Ville / Lieu<input type="text" name="city" placeholder="Barcelone" /></label>
         <label>Stade<input type="text" name="stadium" placeholder="Camp Nou" /></label>
         <label>Minute<input type="number" name="minute" min="0" max="130" placeholder="87" /></label>
+        <label>Position au tir
+          <select name="position" id="select-position"><option value="">—</option></select>
+        </label>
         <label>Partie du corps
           <select name="bodyPart" id="select-bodyPart"><option value="">—</option></select>
         </label>
         <label>Type de but
           <select name="goalType" id="select-goalType"><option value="">—</option></select>
         </label>
+        <label>Placement dans le but
+          <select name="placement" id="select-placement"><option value="">—</option></select>
+        </label>
+        <label>Passe décisive (passeur)<input type="text" name="assist" placeholder="Xavi, Dani Alves…" /></label>
         <label>Gardien adverse<input type="text" name="goalkeeper" placeholder="Iker Casillas" /></label>
         <label>Lien vidéo<input type="url" name="videoUrl" placeholder="https://…" /></label>
         <label class="full">Votre nom / pseudo (optionnel)<input type="text" name="contributor" placeholder="Contributeur" /></label>
@@ -102,6 +116,12 @@
   </dialog>
 
   <datalist id="competitions-list"></datalist>
+  <datalist id="teams-list">
+    <option value="FC Barcelone"></option>
+    <option value="Paris Saint-Germain"></option>
+    <option value="Inter Miami"></option>
+    <option value="Argentine"></option>
+  </datalist>
 
   <footer class="site-footer">
     <div class="container">

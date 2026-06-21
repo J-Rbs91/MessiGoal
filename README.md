@@ -2,81 +2,73 @@
 
 **Base de données participative recensant tous les buts de Lionel Messi.**
 
+🌐 **Site : https://j-rbs91.github.io/MessiGoal/**
+📲 **Installable en application mobile (PWA)** — « Ajouter à l'écran d'accueil ».
+
+[![Validation des données](https://github.com/J-Rbs91/MessiGoal/actions/workflows/validate-data.yml/badge.svg)](https://github.com/J-Rbs91/MessiGoal/actions/workflows/validate-data.yml)
+[![Déploiement GitHub Pages](https://github.com/J-Rbs91/MessiGoal/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/J-Rbs91/MessiGoal/actions/workflows/deploy-pages.yml)
+
 Chacun peut **ajouter**, **corriger** et **compléter** les buts. Pour chaque but,
 on recense :
 
-- la **date** du match
+- la **date** et l'**équipe de Messi** au moment du but (Barça, PSG, Inter Miami, Argentine…)
 - le **lieu** (ville) et le **nom du stade**
-- l'**équipe adverse**
+- l'**équipe adverse** et le **gardien adverse**
 - la **minute** du but
+- la **position au tir** (dans la surface, hors de la surface…)
 - la **partie du corps** (pied gauche, pied droit, tête, autre)
 - le **type de but** : en jeu, pénalty, coup franc, contre son camp
+- le **placement dans le but** (petit filet, lucarne, sous la barre, poteau rentrant…)
+- la **passe décisive** (passeur)
 - la **compétition**
-- le **gardien adverse**
-- un **lien vidéo** vers l'action du but
-
-## Démarrage
-
-Aucune dépendance à installer — uniquement Node.js (≥ 18).
-
-```bash
-npm start
-# puis ouvrir http://localhost:3000
-```
-
-Le port est configurable via la variable d'environnement `PORT`.
-
-## Tests
-
-```bash
-npm test
-```
+- un **lien vidéo** vers l'action
 
 ## Architecture
 
+100 % **statique**, **sans backend** — tout vit dans le dépôt et est servi par
+GitHub Pages.
+
 | Élément | Détail |
 |---|---|
-| Backend | `server.js` — serveur HTTP natif Node.js, sans dépendance |
-| Stockage | `data/goals.json` (écriture atomique) |
-| Frontend | `public/` — HTML/CSS/JS sans framework |
+| Frontend | `public/` — HTML/CSS/JS sans framework, thème sombre « data » |
+| PWA | `public/manifest.webmanifest` + `public/sw.js` (hors-ligne, installable) |
+| Données | **un fichier JSON par but** dans [`data/goals/`](data/goals/) |
+| Build | `scripts/build-data.js` agrège + valide → `public/goals.json` |
+| Déploiement | GitHub Actions → GitHub Pages (à chaque push sur `main`) |
 
-### API REST
+Chaque but est stocké dans son **propre fichier** : une contribution = un fichier
+= une Pull Request, avec un diff propre et sans conflit. Le format est documenté
+dans [`data/README.md`](data/README.md) (schéma : [`data/schema.json`](data/schema.json)).
 
-| Méthode | Route | Description |
-|---|---|---|
-| `GET` | `/api/goals` | Liste des buts (filtres : `q`, `competition`, `bodyPart`, `goalType`, `hasVideo`, `sort`) |
-| `GET` | `/api/goals/:id` | Détail d'un but |
-| `POST` | `/api/goals` | Ajouter un but |
-| `PUT` | `/api/goals/:id` | Modifier / corriger / compléter un but |
-| `DELETE` | `/api/goals/:id` | Supprimer un but |
-| `GET` | `/api/stats` | Statistiques agrégées |
-| `GET` | `/api/meta` | Valeurs autorisées (parties du corps, types de but) |
+## Développement
 
-## Déploiement (GitHub Pages)
+Aucune dépendance d'exécution (Node.js ≥ 18 uniquement pour les scripts).
 
-Le site est déployé automatiquement sur **GitHub Pages** à chaque push sur
-`main`, via le workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml).
+```bash
+npm run build        # agrège data/goals/*.json -> public/goals.json
+npm run build:check  # valide les fichiers de buts (utilisé par la CI)
+npm run dev          # build + aperçu statique sur http://localhost:8080
+npm test             # tests unitaires
+```
 
-➡️ **URL publique : https://j-rbs91.github.io/MessiGoal/**
+Pour régénérer les icônes de la PWA : `node scripts/make-icons.js`.
 
-> Première activation : dans **Settings → Pages**, choisir la source
-> **« GitHub Actions »** (le workflow tente aussi de l'activer automatiquement).
+## Activer le déploiement (une seule fois)
 
-### Mode adaptatif (statique / dynamique)
-
-Le frontend détecte son environnement au démarrage :
-
-- **Avec backend** (local, `npm start`) : lecture/écriture en direct via l'API.
-- **Sans backend** (GitHub Pages) : lecture des buts depuis le fichier statique
-  `goals.json`, statistiques et filtres calculés côté client.
-
-Sur GitHub Pages, comme l'hébergement est statique, les **ajouts et corrections**
-ne sont pas écrits directement : ils ouvrent une **issue GitHub pré-remplie**
-(libellée `contribution`). La communauté valide la proposition, puis le but est
-intégré à `data/goals.json` — les données restent ainsi **partagées et versionnées**.
+Dans **Settings → Pages**, choisir comme source **« GitHub Actions »**. Le
+workflow [`deploy-pages.yml`](.github/workflows/deploy-pages.yml) publie ensuite
+le site à chaque push sur `main`.
 
 ## Contribuer
 
-Le projet est volontairement minimaliste pour rester facile à faire évoluer.
-Les données initiales (`data/goals.json`) ne contiennent que quelques buts
-emblématiques en exemple : la communauté est invitée à compléter le reste.
+Voir [CONTRIBUTING.md](CONTRIBUTING.md). Trois façons : depuis le site (issue
+pré-remplie), via une [issue](https://github.com/J-Rbs91/MessiGoal/issues/new/choose),
+ou via une Pull Request ajoutant un fichier dans `data/goals/`.
+
+Les données de départ ne couvrent qu'un échantillon de buts emblématiques
+(Barça, PSG, Inter Miami, Argentine) : la communauté est invitée à compléter
+l'intégralité de la carrière.
+
+## Licence
+
+[MIT](LICENSE).

@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🌐 Site MessiGoal
+    url: https://j-rbs91.github.io/MessiGoal/
+    about: Consulter la base et contribuer directement depuis le site.
+  - name: 📘 Guide de contribution
+    url: https://github.com/J-Rbs91/MessiGoal/blob/main/CONTRIBUTING.md
+    about: Comment ajouter ou corriger un but.
+  - name: 🤝 Code de conduite
+    url: https://github.com/J-Rbs91/MessiGoal/blob/main/CODE_OF_CONDUCT.md
+    about: Les règles de bonne conduite de la communauté.

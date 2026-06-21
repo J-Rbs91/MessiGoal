@@ -1,0 +1,97 @@
+name: "⚽ Ajout d'un but"
+description: Proposer un nouveau but de Lionel Messi à ajouter à la base.
+title: "Nouveau but : "
+labels: ["contribution", "ajout-but"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci de votre contribution ! Renseignez le maximum de champs. Seuls
+        **la date** et **l'équipe adverse** sont obligatoires. Un **lien vidéo**
+        est un vrai plus. Vérifiez vos sources 🙏
+  - type: input
+    id: date
+    attributes:
+      label: Date du match
+      description: Format AAAA-MM-JJ
+      placeholder: "2009-05-27"
+    validations:
+      required: true
+  - type: input
+    id: opponent
+    attributes:
+      label: Équipe adverse
+      placeholder: "Manchester United"
+    validations:
+      required: true
+  - type: input
+    id: team
+    attributes:
+      label: Équipe de Messi au moment du but
+      placeholder: "FC Barcelone, Paris Saint-Germain, Inter Miami, Argentine…"
+  - type: input
+    id: competition
+    attributes:
+      label: Compétition
+      placeholder: "Ligue des champions"
+  - type: input
+    id: city
+    attributes:
+      label: Ville / Lieu
+      placeholder: "Rome"
+  - type: input
+    id: stadium
+    attributes:
+      label: Stade
+      placeholder: "Stadio Olimpico"
+  - type: input
+    id: minute
+    attributes:
+      label: Minute du but
+      placeholder: "70"
+  - type: dropdown
+    id: bodyPart
+    attributes:
+      label: Partie du corps
+      options: ["", "Pied gauche", "Pied droit", "Tête", "Autre"]
+  - type: dropdown
+    id: goalType
+    attributes:
+      label: Type de but
+      options: ["", "En jeu", "Pénalty", "Coup franc", "Contre son camp"]
+  - type: dropdown
+    id: position
+    attributes:
+      label: Position au moment du tir
+      options: ["", "Dans la surface", "Entrée de la surface", "Hors de la surface", "Loin du but (+30 m)"]
+  - type: dropdown
+    id: placement
+    attributes:
+      label: Placement dans le but
+      options: ["", "Petit filet gauche", "Petit filet droit", "Lucarne gauche", "Lucarne droite", "Sous la barre", "Ras de terre", "Poteau rentrant", "Plein centre", "Panenka"]
+  - type: input
+    id: assist
+    attributes:
+      label: Passe décisive (passeur)
+      placeholder: "Dani Alves"
+  - type: input
+    id: goalkeeper
+    attributes:
+      label: Gardien adverse
+      placeholder: "Edwin van der Sar"
+  - type: input
+    id: videoUrl
+    attributes:
+      label: Lien vidéo
+      placeholder: "https://…"
+  - type: input
+    id: contributor
+    attributes:
+      label: Votre pseudo (facultatif)
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Vérifications
+      options:
+        - label: J'ai vérifié mes sources et respecte le Code de conduite.
+          required: true

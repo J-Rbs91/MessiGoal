@@ -1,12 +1,12 @@
 {
   "name": "messigoal",
   "version": "1.0.0",
-  "description": "Base de données participative recensant tous les buts de Lionel Messi.",
-  "main": "server.js",
+  "description": "Base de données participative recensant tous les buts de Lionel Messi (site statique GitHub Pages).",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js",
-    "test": "node test/server.test.js"
+    "build": "node scripts/build-data.js",
+    "build:check": "node scripts/build-data.js --check",
+    "dev": "node scripts/build-data.js && node scripts/dev-server.js",
+    "test": "node test/build-data.test.js"
   },
   "engines": {
     "node": ">=18"

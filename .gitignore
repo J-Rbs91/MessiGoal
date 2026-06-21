@@ -4,3 +4,7 @@ data/*.tmp
 .DS_Store
 npm-debug.log*
 screenshots/
+
+# Artefacts générés
+public/goals.json
+_site/

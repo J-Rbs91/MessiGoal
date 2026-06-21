@@ -1,0 +1,35 @@
+name: Validation des données
+
+on:
+  pull_request:
+    paths:
+      - 'data/**'
+      - 'scripts/build-data.js'
+      - 'test/**'
+  push:
+    branches: [main]
+    paths:
+      - 'data/**'
+      - 'scripts/build-data.js'
+      - 'test/**'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupération du dépôt
+        uses: actions/checkout@v4
+
+      - name: Configuration de Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validation des fichiers de buts
+        run: node scripts/build-data.js --check
+
+      - name: Tests unitaires
+        run: npm test

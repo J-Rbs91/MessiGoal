@@ -1,0 +1,16 @@
+{
+  "date": "2015-05-06",
+  "team": "FC Barcelone",
+  "opponent": "Bayern Munich",
+  "competition": "Ligue des champions",
+  "city": "Barcelone",
+  "stadium": "Camp Nou",
+  "minute": 80,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "assist": "Solo (action personnelle)",
+  "goalkeeper": "Manuel Neuer",
+  "videoUrl": "",
+  "contributor": "MessiGoal"
+}

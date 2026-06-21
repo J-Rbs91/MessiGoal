@@ -1,0 +1,40 @@
+name: "✏️ Correction d'un but"
+description: Corriger ou compléter un but existant.
+title: "Correction : "
+labels: ["contribution", "correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Indiquez le but concerné et ce qu'il faut corriger ou compléter.
+  - type: input
+    id: goal_id
+    attributes:
+      label: Identifiant du but (ou date + adversaire)
+      placeholder: "2009-05-27-manchester-united"
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Correction proposée
+      description: Quel champ corriger / compléter, et avec quelle valeur ?
+      placeholder: "Le gardien était Edwin van der Sar (et non …). Minute exacte : 70."
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source
+      placeholder: "Lien vers une source fiable"
+  - type: input
+    id: contributor
+    attributes:
+      label: Votre pseudo (facultatif)
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Vérifications
+      options:
+        - label: J'ai vérifié mes sources et respecte le Code de conduite.
+          required: true
