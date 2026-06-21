@@ -22,6 +22,7 @@
     "assist": { "type": "string", "description": "Passeur décisif" },
     "goalkeeper": { "type": "string" },
     "videoUrl": { "type": "string", "pattern": "^(|https?://\\S+)$" },
+    "source": { "type": "string", "description": "Provenance de la donnée : URL ou nom de la source (Wikipédia, StatsBomb…)" },
     "contributor": { "type": "string" }
   }
 }

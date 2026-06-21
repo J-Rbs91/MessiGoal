@@ -17,6 +17,7 @@ const fs = require('fs');
 const path = require('path');
 
 const GOALS_DIR = path.join(__dirname, '..', 'data', 'goals');
+const SOURCE = 'https://en.wikipedia.org/wiki/List_of_international_goals_scored_by_Lionel_Messi';
 
 // [date, adversaire (fr), compétition (fr), stade, ville]
 // stade/ville vides = non documentés.
@@ -175,6 +176,7 @@ for (const [date, opp, comp, stadium, city] of GOALS) {
     assist: '',
     goalkeeper: '',
     videoUrl: '',
+    source: SOURCE,
     contributor: 'MessiGoal',
   };
   fs.writeFileSync(file, JSON.stringify(goal, null, 2) + '\n', 'utf8');

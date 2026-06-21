@@ -145,6 +145,7 @@
         <label>Passe décisive (passeur)<input type="text" name="assist" placeholder="Xavi, Dani Alves…" /></label>
         <label>Gardien adverse<input type="text" name="goalkeeper" placeholder="Iker Casillas" /></label>
         <label>Lien vidéo<input type="url" name="videoUrl" placeholder="https://…" /></label>
+        <label class="full">Source de la donnée<input type="text" name="source" list="sources-list" placeholder="Wikipédia, StatsBomb, ou une URL…" /></label>
         <label class="full">Votre nom / pseudo (optionnel)<input type="text" name="contributor" placeholder="Contributeur" /></label>
       </div>
       <div class="form-actions">
@@ -155,6 +156,12 @@
   </dialog>
 
   <datalist id="competitions-list"></datalist>
+  <datalist id="sources-list">
+    <option value="Wikipédia"></option>
+    <option value="StatsBomb"></option>
+    <option value="Transfermarkt"></option>
+    <option value="FBref"></option>
+  </datalist>
   <datalist id="teams-list">
     <option value="FC Barcelone"></option>
     <option value="Paris Saint-Germain"></option>

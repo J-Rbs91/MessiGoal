@@ -31,6 +31,7 @@ même match, suffixez : `...-manchester-united-2.json`.
   "assist": "Xavi",
   "goalkeeper": "Edwin van der Sar",
   "videoUrl": "",
+  "source": "https://en.wikipedia.org/wiki/...",
   "contributor": "votre-pseudo"
 }
 ```
@@ -52,6 +53,7 @@ même match, suffixez : `...-manchester-united-2.json`.
 | `assist` | chaîne | — | passeur décisif |
 | `goalkeeper` | chaîne | — | gardien adverse |
 | `videoUrl` | URL `http(s)` ou `""` | — | lien vidéo de l'action |
+| `source` | chaîne (≤ 200 car.) | — | provenance de la donnée : URL ou nom de la source (Wikipédia, StatsBomb…) |
 | `contributor` | chaîne | — | votre pseudo (facultatif) |
 
 > Le champ `id` est facultatif : par défaut il vaut le nom du fichier sans

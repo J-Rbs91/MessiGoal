@@ -33,7 +33,7 @@ const PLACEMENTS = [
 // Champs texte libres saisis par le public, avec leur longueur maximale.
 const TEXT_FIELDS = {
   id: 80, team: 60, opponent: 60, competition: 60, city: 60,
-  stadium: 80, assist: 80, goalkeeper: 60, contributor: 60,
+  stadium: 80, assist: 80, goalkeeper: 60, source: 200, contributor: 60,
 };
 const CONTROL_CHARS = new RegExp('[\\u0000-\\u001F\\u007F]'); // controle
 const ANGLE_BRACKETS = /[<>]/;
@@ -104,6 +104,7 @@ function normalize(data, id) {
     assist: data.assist || '',
     goalkeeper: data.goalkeeper || '',
     videoUrl: data.videoUrl || '',
+    source: data.source || '',
     contributor: data.contributor || '',
   };
 }

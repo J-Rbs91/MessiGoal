@@ -42,10 +42,11 @@ const FIELDS = [
   ['placement', 'Placement', (g) => g.placement],
   ['assist', 'Passe décisive', (g) => g.assist],
   ['goalkeeper', 'Gardien', (g) => g.goalkeeper],
+  ['source', 'Source', (g) => g.source],
 ];
 
 // Champs masqués dans la ligne principale, révélés via « Détails »
-const DETAIL_KEYS = ['city', 'stadium', 'position', 'bodyPart', 'placement', 'assist', 'goalkeeper'];
+const DETAIL_KEYS = ['city', 'stadium', 'position', 'bodyPart', 'placement', 'assist', 'goalkeeper', 'source'];
 
 const $ = (sel) => document.querySelector(sel);
 
@@ -65,6 +66,15 @@ function escapeHtml(str) {
 function safeUrl(url) {
   const u = String(url ?? '').trim();
   return /^https?:\/\/\S+$/i.test(u) ? u : '';
+}
+
+// Libellé court pour une source-URL : le nom de domaine (sans « www. »)
+function sourceLabel(url) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '');
+  } catch {
+    return url;
+  }
 }
 
 function formatDate(iso) {
@@ -257,7 +267,14 @@ function renderGoals(goals) {
     const checked = selected.has(g.id) ? 'checked' : '';
     const details = DETAIL_KEYS.map((k) => {
       const f = FIELDS.find((x) => x[0] === k);
-      return `<div class="detail-item"><span class="detail-label">${f[1]}</span><span class="detail-value">${escapeHtml(f[2](g)) || '—'}</span></div>`;
+      const raw = f[2](g);
+      let value;
+      if (k === 'source' && safeUrl(raw)) {
+        value = `<a class="video-link" href="${escapeHtml(safeUrl(raw))}" target="_blank" rel="noopener noreferrer">${escapeHtml(sourceLabel(raw))}</a>`;
+      } else {
+        value = escapeHtml(raw) || '—';
+      }
+      return `<div class="detail-item"><span class="detail-label">${f[1]}</span><span class="detail-value">${value}</span></div>`;
     }).join('');
     return `<tr class="goal-row" data-id="${escapeHtml(g.id)}">
       <td class="col-compare" data-label="Comparer"><input type="checkbox" class="compare-check" data-id="${escapeHtml(g.id)}" ${checked} aria-label="Sélectionner pour comparer" /></td>
@@ -379,6 +396,7 @@ function openGitHubContribution(payload, id) {
     ['Passe décisive', payload.assist],
     ['Gardien adverse', payload.goalkeeper],
     ['Lien vidéo', payload.videoUrl],
+    ['Source de la donnée', payload.source],
     ['Contributeur', payload.contributor],
   ];
   const body = [
