@@ -52,6 +52,29 @@ npm test
 | `GET` | `/api/stats` | Statistiques agrégées |
 | `GET` | `/api/meta` | Valeurs autorisées (parties du corps, types de but) |
 
+## Déploiement (GitHub Pages)
+
+Le site est déployé automatiquement sur **GitHub Pages** à chaque push sur
+`main`, via le workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml).
+
+➡️ **URL publique : https://j-rbs91.github.io/MessiGoal/**
+
+> Première activation : dans **Settings → Pages**, choisir la source
+> **« GitHub Actions »** (le workflow tente aussi de l'activer automatiquement).
+
+### Mode adaptatif (statique / dynamique)
+
+Le frontend détecte son environnement au démarrage :
+
+- **Avec backend** (local, `npm start`) : lecture/écriture en direct via l'API.
+- **Sans backend** (GitHub Pages) : lecture des buts depuis le fichier statique
+  `goals.json`, statistiques et filtres calculés côté client.
+
+Sur GitHub Pages, comme l'hébergement est statique, les **ajouts et corrections**
+ne sont pas écrits directement : ils ouvrent une **issue GitHub pré-remplie**
+(libellée `contribution`). La communauté valide la proposition, puis le but est
+intégré à `data/goals.json` — les données restent ainsi **partagées et versionnées**.
+
 ## Contribuer
 
 Le projet est volontairement minimaliste pour rester facile à faire évoluer.
