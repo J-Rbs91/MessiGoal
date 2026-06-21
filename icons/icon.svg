@@ -1,17 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
-  <!-- The Goal Archive : stade de nuit + grille de but + trajectoire dorée -->
-  <defs>
-    <radialGradient id="sky" cx="50%" cy="0%" r="90%">
-      <stop offset="0%" stop-color="#102640"/>
-      <stop offset="60%" stop-color="#0B1B2F"/>
-      <stop offset="100%" stop-color="#07111F"/>
-    </radialGradient>
-  </defs>
-  <rect width="512" height="512" rx="96" fill="url(#sky)"/>
-  <rect x="8" y="8" width="496" height="496" rx="90" fill="none" stroke="#23415F" stroke-width="3"/>
+  <!-- The Goal Archive · Pelouse nocturne : gazon sombre + grille de but + trajectoire dorée -->
+  <rect width="512" height="512" rx="96" fill="#0A1410"/>
+  <rect x="8" y="8" width="496" height="496" rx="90" fill="none" stroke="#25382B" stroke-width="3"/>
 
-  <!-- Grille de but / filet (évoque aussi la data) -->
-  <g stroke="#23415F" stroke-width="3" opacity="0.85">
+  <!-- Rayures de tonte (bords nets) -->
+  <g fill="#0E1A13">
+    <rect x="40" y="40" width="60" height="432"/>
+    <rect x="160" y="40" width="60" height="432"/>
+    <rect x="280" y="40" width="60" height="432"/>
+    <rect x="400" y="40" width="60" height="432"/>
+  </g>
+
+  <!-- Grille de but / filet -->
+  <g stroke="#36513F" stroke-width="3" opacity="0.9">
     <rect x="120" y="150" width="272" height="212" rx="10" fill="none"/>
     <line x1="120" y1="203" x2="392" y2="203"/>
     <line x1="120" y1="256" x2="392" y2="256"/>
@@ -24,10 +25,9 @@
   <!-- Trajectoire de tir dorée vers la lucarne -->
   <path d="M104 408 C 200 360, 300 250, 372 178" fill="none"
         stroke="#F2C14E" stroke-width="14" stroke-linecap="round"/>
-  <!-- Impact du but (point doré) -->
   <circle cx="372" cy="178" r="18" fill="#F2C14E"/>
   <circle cx="372" cy="178" r="30" fill="none" stroke="#F2C14E" stroke-width="3" opacity="0.4"/>
 
   <!-- Ballon au départ du tir -->
-  <circle cx="104" cy="408" r="20" fill="#F4F7FA"/>
+  <circle cx="104" cy="408" r="20" fill="#F2F5F0"/>
 </svg>

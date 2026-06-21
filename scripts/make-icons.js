@@ -1,8 +1,9 @@
 'use strict';
 
 // Génère le favicon + les icônes PNG de la PWA selon le design system
-// « The Goal Archive » : stade de nuit, grille de but/filet et trajectoire
-// de tir dorée vers la lucarne. Rendu via Chromium (Playwright).
+// « The Goal Archive · Pelouse Nocturne » : gazon sombre rayé, grille de
+// but/filet et trajectoire de tir dorée vers la lucarne. Surfaces plates,
+// aucun dégradé. Rendu via Chromium (Playwright).
 //   node scripts/make-icons.js
 const { chromium } = require('playwright');
 const fs = require('fs');
@@ -10,26 +11,25 @@ const path = require('path');
 
 const OUT = path.join(__dirname, '..', 'icons');
 
-// Palette « Night Stadium » + accent Goal Gold
-const NAVY_HI = '#102640';
-const NAVY = '#0B1B2F';
-const NIGHT = '#07111F';
-const GRID = '#23415F';
+// Palette « Pelouse Nocturne » + accent Goal Gold
+const PITCH = '#0A1410';
+const STRIPE = '#0E1A13';
+const GRID = '#36513F';
+const BORDER = '#25382B';
 const GOLD = '#F2C14E';
-const WHITE = '#F4F7FA';
+const WHITE = '#F2F5F0';
 
 function archiveSvg(size) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 512 512">
-    <defs>
-      <radialGradient id="sky" cx="50%" cy="0%" r="90%">
-        <stop offset="0%" stop-color="${NAVY_HI}"/>
-        <stop offset="60%" stop-color="${NAVY}"/>
-        <stop offset="100%" stop-color="${NIGHT}"/>
-      </radialGradient>
-    </defs>
-    <rect width="512" height="512" rx="96" fill="url(#sky)"/>
-    <rect x="8" y="8" width="496" height="496" rx="90" fill="none" stroke="${GRID}" stroke-width="3"/>
-    <g stroke="${GRID}" stroke-width="3" opacity="0.85">
+    <rect width="512" height="512" rx="96" fill="${PITCH}"/>
+    <rect x="8" y="8" width="496" height="496" rx="90" fill="none" stroke="${BORDER}" stroke-width="3"/>
+    <g fill="${STRIPE}">
+      <rect x="40" y="40" width="60" height="432"/>
+      <rect x="160" y="40" width="60" height="432"/>
+      <rect x="280" y="40" width="60" height="432"/>
+      <rect x="400" y="40" width="60" height="432"/>
+    </g>
+    <g stroke="${GRID}" stroke-width="3" opacity="0.9">
       <rect x="120" y="150" width="272" height="212" rx="10" fill="none"/>
       <line x1="120" y1="203" x2="392" y2="203"/>
       <line x1="120" y1="256" x2="392" y2="256"/>
