@@ -60,21 +60,17 @@
       <table class="goals-table">
         <thead>
           <tr>
+            <th class="col-compare" title="Sélectionner pour comparer">⚖</th>
             <th>N°</th>
             <th>Date</th>
             <th>Équipe</th>
             <th>Adversaire</th>
             <th>Compétition</th>
-            <th>Lieu / Stade</th>
             <th>Min.</th>
-            <th>Position</th>
-            <th>Partie du corps</th>
             <th>Type</th>
-            <th>Placement</th>
-            <th>Passe déc.</th>
-            <th>Gardien</th>
             <th>Vidéo</th>
-            <th></th>
+            <th class="col-details"></th>
+            <th class="col-action"></th>
           </tr>
         </thead>
         <tbody id="goals-body"></tbody>
@@ -82,6 +78,26 @@
       <p class="empty-state" id="empty-state" hidden>Aucun but ne correspond. Soyez le premier à en ajouter un !</p>
     </div>
   </main>
+
+  <!-- Barre de comparaison -->
+  <div class="compare-bar" id="compare-bar" hidden>
+    <span class="compare-info" id="compare-info"></span>
+    <div class="compare-actions">
+      <button class="btn" id="compare-clear">Effacer</button>
+      <button class="btn btn-primary" id="compare-go" disabled>Comparer</button>
+    </div>
+  </div>
+
+  <!-- Modale de comparaison -->
+  <dialog id="compare-dialog">
+    <div class="compare-head">
+      <h2>Comparaison de deux buts</h2>
+      <button type="button" class="btn" id="compare-close">Fermer</button>
+    </div>
+    <div class="compare-table-wrap">
+      <table class="compare-table" id="compare-table"></table>
+    </div>
+  </dialog>
 
   <!-- Modale d'ajout / édition -->
   <dialog id="goal-dialog">

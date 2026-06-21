@@ -23,6 +23,30 @@ const GITHUB = { owner: 'J-Rbs91', repo: 'MessiGoal' };
 let editingId = null;
 const Store = { cache: null };
 
+// Buts sélectionnés pour comparaison (max 2)
+const selected = new Set();
+
+// Définition de tous les champs affichables (clé, libellé, formateur)
+const FIELDS = [
+  ['goalNumber', 'N° du but', (g) => (g.goalNumber != null ? '#' + g.goalNumber : '')],
+  ['date', 'Date', (g) => formatDate(g.date)],
+  ['team', 'Équipe de Messi', (g) => g.team],
+  ['opponent', 'Adversaire', (g) => g.opponent],
+  ['competition', 'Compétition', (g) => g.competition],
+  ['city', 'Ville', (g) => g.city],
+  ['stadium', 'Stade', (g) => g.stadium],
+  ['minute', 'Minute', (g) => (g.minute != null ? g.minute + "'" : '')],
+  ['position', 'Position au tir', (g) => g.position],
+  ['bodyPart', 'Partie du corps', (g) => g.bodyPart],
+  ['goalType', 'Type de but', (g) => g.goalType],
+  ['placement', 'Placement', (g) => g.placement],
+  ['assist', 'Passe décisive', (g) => g.assist],
+  ['goalkeeper', 'Gardien', (g) => g.goalkeeper],
+];
+
+// Champs masqués dans la ligne principale, révélés via « Détails »
+const DETAIL_KEYS = ['city', 'stadium', 'position', 'bodyPart', 'placement', 'assist', 'goalkeeper'];
+
 const $ = (sel) => document.querySelector(sel);
 
 // ---------------------------------------------------------------------------
@@ -120,6 +144,7 @@ async function init() {
   populateSelect($('#select-placement'), META.placements, '—');
 
   wireEvents();
+  updateCompareBar();
   try {
     await getAllGoals();
     await loadStats();
@@ -175,31 +200,75 @@ function renderGoals(goals) {
   $('#empty-state').hidden = goals.length > 0;
   body.innerHTML = goals.map((g) => {
     const typeClass = g.goalType ? 'type-' + g.goalType.replace(/\s+/g, '.') : '';
-    const place = [g.stadium, g.city].filter(Boolean).join(' · ');
     const vurl = safeUrl(g.videoUrl);
     const video = vurl
       ? `<a class="video-link" href="${escapeHtml(vurl)}" target="_blank" rel="noopener noreferrer">▶ Voir</a>`
       : '<span class="muted">—</span>';
-    return `<tr data-id="${escapeHtml(g.id)}">
-      <td data-label="N° du but">${g.goalNumber != null ? '#' + escapeHtml(g.goalNumber) : '—'}</td>
+    const checked = selected.has(g.id) ? 'checked' : '';
+    const details = DETAIL_KEYS.map((k) => {
+      const f = FIELDS.find((x) => x[0] === k);
+      return `<div class="detail-item"><span class="detail-label">${f[1]}</span><span class="detail-value">${escapeHtml(f[2](g)) || '—'}</span></div>`;
+    }).join('');
+    return `<tr class="goal-row" data-id="${escapeHtml(g.id)}">
+      <td class="col-compare" data-label="Comparer"><input type="checkbox" class="compare-check" data-id="${escapeHtml(g.id)}" ${checked} aria-label="Sélectionner pour comparer" /></td>
+      <td data-label="N°">${g.goalNumber != null ? '#' + escapeHtml(g.goalNumber) : '—'}</td>
       <td data-label="Date">${formatDate(g.date)}</td>
       <td data-label="Équipe">${escapeHtml(g.team) || '—'}</td>
       <td class="opponent" data-label="Adversaire">${escapeHtml(g.opponent)}</td>
       <td data-label="Compétition">${escapeHtml(g.competition) || '—'}</td>
-      <td data-label="Lieu / Stade">${escapeHtml(place) || '—'}</td>
-      <td data-label="Minute">${g.minute != null ? escapeHtml(g.minute) + "'" : '—'}</td>
-      <td data-label="Position">${escapeHtml(g.position) || '—'}</td>
-      <td data-label="Partie du corps">${escapeHtml(g.bodyPart) || '—'}</td>
+      <td data-label="Min.">${g.minute != null ? escapeHtml(g.minute) + "'" : '—'}</td>
       <td data-label="Type">${g.goalType ? `<span class="badge ${typeClass}">${escapeHtml(g.goalType)}</span>` : '—'}</td>
-      <td data-label="Placement">${escapeHtml(g.placement) || '—'}</td>
-      <td data-label="Passe décisive">${escapeHtml(g.assist) || '—'}</td>
-      <td data-label="Gardien">${escapeHtml(g.goalkeeper) || '—'}</td>
       <td data-label="Vidéo">${video}</td>
-      <td class="actions" data-label="">
-        <button class="btn-icon" data-action="edit" title="Proposer une correction">✏️ Proposer</button>
-      </td>
+      <td class="col-details" data-label=""><button class="btn-icon toggle-details" data-action="toggle" aria-expanded="false">▾ Détails</button></td>
+      <td class="col-action actions" data-label=""><button class="btn-icon" data-action="edit" title="Proposer une correction">✏️ Proposer</button></td>
+    </tr>
+    <tr class="details-row" hidden>
+      <td colspan="11"><div class="details-grid">${details}</div></td>
     </tr>`;
   }).join('');
+}
+
+// ---------------------------------------------------------------------------
+// Comparaison de deux buts
+// ---------------------------------------------------------------------------
+function updateCompareBar() {
+  const n = selected.size;
+  $('#compare-bar').hidden = n === 0;
+  $('#compare-info').textContent =
+    n + (n > 1 ? ' buts sélectionnés' : ' but sélectionné') + (n < 2 ? ' — choisissez-en 2' : '');
+  $('#compare-go').disabled = n !== 2;
+}
+
+function clearCompare() {
+  selected.clear();
+  document.querySelectorAll('.compare-check').forEach((c) => { c.checked = false; });
+  updateCompareBar();
+}
+
+async function openCompare() {
+  if (selected.size !== 2) return;
+  const all = await getAllGoals();
+  const [a, b] = [...selected].map((id) => all.find((g) => g.id === id)).filter(Boolean);
+  if (!a || !b) return;
+
+  const videoCell = (g) => {
+    const u = safeUrl(g.videoUrl);
+    return u ? `<a class="video-link" href="${escapeHtml(u)}" target="_blank" rel="noopener noreferrer">▶ Voir</a>` : '—';
+  };
+  const head = `<thead><tr><th>Champ</th>
+    <th>${escapeHtml(a.opponent)}<br><small>${formatDate(a.date)}</small></th>
+    <th>${escapeHtml(b.opponent)}<br><small>${formatDate(b.date)}</small></th></tr></thead>`;
+  const rows = FIELDS.map(([key, label, fmt]) => {
+    const va = String(fmt(a) || '');
+    const vb = String(fmt(b) || '');
+    const diff = va !== vb ? ' class="diff"' : '';
+    return `<tr${diff}><th>${label}</th><td>${escapeHtml(va) || '—'}</td><td>${escapeHtml(vb) || '—'}</td></tr>`;
+  }).join('');
+  const videoRow = `<tr${safeUrl(a.videoUrl) !== safeUrl(b.videoUrl) ? ' class="diff"' : ''}>` +
+    `<th>Vidéo</th><td>${videoCell(a)}</td><td>${videoCell(b)}</td></tr>`;
+
+  $('#compare-table').innerHTML = head + '<tbody>' + rows + videoRow + '</tbody>';
+  $('#compare-dialog').showModal();
 }
 
 // ---------------------------------------------------------------------------
@@ -311,12 +380,43 @@ function wireEvents() {
   $('#goals-body').addEventListener('click', async (e) => {
     const btn = e.target.closest('button[data-action]');
     if (!btn) return;
-    const id = btn.closest('tr').dataset.id;
+    const row = btn.closest('tr');
+
+    if (btn.dataset.action === 'toggle') {
+      const details = row.nextElementSibling;
+      const open = details.hidden;
+      details.hidden = !open;
+      row.classList.toggle('expanded', open);
+      btn.setAttribute('aria-expanded', String(open));
+      btn.textContent = (open ? '▴' : '▾') + ' Détails';
+      return;
+    }
     if (btn.dataset.action === 'edit') {
-      const goal = (await getAllGoals()).find((g) => g.id === id);
+      const goal = (await getAllGoals()).find((g) => g.id === row.dataset.id);
       openDialog(goal);
     }
   });
+
+  // Sélection pour comparaison (max 2)
+  $('#goals-body').addEventListener('change', (e) => {
+    const cb = e.target.closest('.compare-check');
+    if (!cb) return;
+    if (cb.checked) {
+      if (selected.size >= 2) {
+        cb.checked = false;
+        showToast('Vous ne pouvez comparer que 2 buts à la fois.', true);
+        return;
+      }
+      selected.add(cb.dataset.id);
+    } else {
+      selected.delete(cb.dataset.id);
+    }
+    updateCompareBar();
+  });
+
+  $('#compare-clear').addEventListener('click', clearCompare);
+  $('#compare-go').addEventListener('click', openCompare);
+  $('#compare-close').addEventListener('click', () => $('#compare-dialog').close());
 }
 
 document.addEventListener('DOMContentLoaded', init);

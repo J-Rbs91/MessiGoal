@@ -395,6 +395,57 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.78); }
 }
 .toast.error { color: var(--grana); border-color: var(--grana-deep); }
 
+/* ------------------------------------------------- Comparaison + détails */
+.col-compare { width: 36px; text-align: center; }
+.goals-table td.col-compare input { accent-color: var(--gold); width: 16px; height: 16px; cursor: pointer; }
+.toggle-details { white-space: nowrap; }
+.goal-row.expanded { background: #12161e; }
+
+.details-row > td { background: var(--bg); border-right: none; padding: 0; }
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border-top: 1px solid var(--gold-dim);
+}
+.detail-item { background: var(--panel); padding: 9px 14px; display: flex; flex-direction: column; gap: 3px; }
+.detail-label { font-family: var(--mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); }
+.detail-value { color: var(--text); font-size: 0.86rem; white-space: normal; }
+
+.compare-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--panel-2); border-top: 1px solid var(--gold);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 11px 24px; z-index: 40;
+}
+.compare-info { font-family: var(--mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold); }
+.compare-actions { display: flex; gap: 10px; }
+
+#compare-dialog {
+  border: 1px solid var(--gold-dim); border-radius: 0; padding: 0;
+  width: min(720px, 96vw); background: var(--panel); color: var(--text);
+}
+#compare-dialog::backdrop { background: rgba(0, 0, 0, 0.78); }
+.compare-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); }
+.compare-head h2 { margin: 0; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--mono); color: var(--gold); }
+.compare-table-wrap { max-height: 72vh; overflow-y: auto; }
+.compare-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+.compare-table th, .compare-table td {
+  padding: 9px 14px; text-align: left; vertical-align: top;
+  border-bottom: 1px solid var(--border); border-right: 1px solid var(--border);
+}
+.compare-table thead th {
+  position: sticky; top: 0; background: var(--bg); color: var(--gold);
+  font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em;
+}
+.compare-table tbody th {
+  font-family: var(--mono); font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--muted); width: 32%; font-weight: 600;
+}
+.compare-table tr.diff td { background: rgba(237, 187, 0, 0.10); color: var(--gold); font-weight: 600; }
+.compare-table small { color: var(--muted); font-weight: 400; }
+
 /* ---------------------------------------------------------------- Responsive */
 @media (max-width: 760px) {
   .stats { grid-template-columns: repeat(2, 1fr); }
@@ -472,20 +523,31 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.78); }
   }
   .goals-table td.opponent::before { color: var(--grana); align-self: center; }
 
-  /* Cellule date en mono déjà gérée */
-  .goals-table td:nth-child(1),
-  .goals-table td:nth-child(5) { text-align: right; }
-
-  /* Actions : boutons pleine largeur */
-  .goals-table td.actions { justify-content: stretch; gap: 8px; border-bottom: none; }
-  .goals-table td.actions::before { display: none; }
-  .goals-table td.actions .btn-icon {
+  /* Cellules utilitaires (comparer / détails / action) */
+  .goals-table td.col-details::before,
+  .goals-table td.col-action::before { display: none; }
+  .goals-table td.col-compare { justify-content: space-between; }
+  .goals-table td.col-details,
+  .goals-table td.col-action { justify-content: stretch; gap: 8px; }
+  .goals-table td.col-details .toggle-details,
+  .goals-table td.col-action .btn-icon {
     flex: 1;
     padding: 11px;
     border: 1px solid var(--border-strong);
     text-align: center;
   }
-  .goals-table td.actions .btn-icon[data-action="delete"] { flex: 0 0 56px; }
+
+  /* Ligne de détails dépliée */
+  .details-row > td { display: block; padding: 0; }
+  .details-row > td::before { display: none; }
+  .details-grid { grid-template-columns: 1fr; }
+  .detail-item { text-align: left; }
+
+  /* Barre de comparaison empilée */
+  .compare-bar { flex-direction: column; gap: 8px; padding: 12px; }
+  .compare-bar .btn { width: 100%; }
+  .compare-actions { width: 100%; }
+  .compare-info { text-align: center; }
 
   .result-count { text-align: center; }
 }
