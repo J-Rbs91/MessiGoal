@@ -49,12 +49,14 @@ const FIELDS = [
 
 // Données principales affichées directement sur la ligne : n° du but,
 // adversaire, compétition. Tout le reste est révélé via « Détails » (un détail
-// par ligne), organisé en blocs façon fiche d'archive. La compétition n'est pas
-// répétée ici puisqu'elle figure déjà sur la ligne principale.
+// par ligne). Les blocs reprennent à l'identique les sections du formulaire de
+// contribution (index.html) pour que l'organisation soit la même partout.
+// Adversaire et compétition ne sont pas répétés ici : ils figurent déjà sur la
+// ligne principale.
 const DETAIL_GROUPS = [
-  ['Contexte', ['date', 'team', 'city', 'stadium']],
-  ['Action', ['minute', 'goalType', 'bodyPart', 'position', 'placement']],
-  ['Acteurs', ['assist', 'goalkeeper']],
+  ['Informations principales', ['date', 'team', 'minute']],
+  ['Détail du but', ['goalType', 'bodyPart', 'position', 'placement']],
+  ['Contexte', ['city', 'stadium', 'goalkeeper', 'assist']],
   ['Preuves', ['video', 'source']],
 ];
 
