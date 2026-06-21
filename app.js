@@ -580,9 +580,34 @@ function wireEvents() {
 
 document.addEventListener('DOMContentLoaded', init);
 
-// Enregistrement du service worker (PWA / hors-ligne)
+// Enregistrement du service worker (PWA / hors-ligne) + mise à jour automatique.
+// Sans ça, un ancien service worker peut continuer à servir une version périmée
+// de l'app même après un rechargement : on force donc la vérification de mise à
+// jour, on active immédiatement la nouvelle version, et on recharge une seule
+// fois quand elle prend le contrôle.
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(() => { /* ignoré */ });
+  let swReloaded = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (swReloaded) return;
+    swReloaded = true;
+    window.location.reload();
+  });
+
+  window.addEventListener('load', async () => {
+    try {
+      const reg = await navigator.serviceWorker.register('./sw.js');
+      reg.update();
+      reg.addEventListener('updatefound', () => {
+        const nw = reg.installing;
+        if (!nw) return;
+        nw.addEventListener('statechange', () => {
+          // Nouvelle version installée alors qu'une ancienne contrôle déjà la
+          // page → on lui demande de s'activer tout de suite.
+          if (nw.state === 'installed' && navigator.serviceWorker.controller) {
+            nw.postMessage({ type: 'SKIP_WAITING' });
+          }
+        });
+      });
+    } catch { /* ignoré */ }
   });
 }

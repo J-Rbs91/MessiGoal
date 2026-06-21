@@ -10,7 +10,7 @@
  * « cache d'abord » figeait l'ancienne version de l'app sur les appareils.)
  */
 
-const VERSION = 'messigoal-v6';
+const VERSION = 'messigoal-v7';
 const SHELL = [
   './',
   './index.html',
@@ -21,6 +21,11 @@ const SHELL = [
   './icons/icon-512.png',
   './icons/icon.svg',
 ];
+
+// Permet à la page d'activer immédiatement une nouvelle version (voir app.js).
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') self.skipWaiting();
+});
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
