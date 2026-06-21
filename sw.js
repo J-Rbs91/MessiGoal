@@ -10,7 +10,7 @@
  * « cache d'abord » figeait l'ancienne version de l'app sur les appareils.)
  */
 
-const VERSION = 'messigoal-v4';
+const VERSION = 'messigoal-v5';
 const SHELL = [
   './',
   './index.html',

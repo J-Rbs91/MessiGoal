@@ -188,7 +188,7 @@ async function init() {
 
   wireEvents();
   setupInstall();
-  updateCompareBar();
+  updateCompareUI();
   try {
     await getAllGoals();
     await loadStats();
@@ -311,11 +311,15 @@ function renderGoals(goals) {
         <div class="details-grid">${details}</div>
         <div class="details-actions">
           <label class="compare-select"><input type="checkbox" class="compare-check" data-id="${escapeHtml(g.id)}" ${checked} /> Sélectionner ce but pour comparer</label>
+          <button class="btn-icon compare-launch" data-action="compare" disabled>⚖ Cochez au moins 2 buts</button>
           <button class="btn-icon" data-action="edit" title="Proposer une correction">✎ Proposer une correction</button>
         </div>
       </td>
     </tr>`;
   }).join('');
+  // La sélection persiste entre deux rendus : on resynchronise les boutons
+  // « Comparer » des lignes fraîchement rendues.
+  updateCompareUI();
 }
 
 // Rend une donnée complémentaire (label + valeur) pour le menu déroulant.
@@ -357,22 +361,18 @@ function detailItem(key, g) {
 // ---------------------------------------------------------------------------
 // Comparaison de 2 à 4 buts
 // ---------------------------------------------------------------------------
-function updateCompareBar() {
+// La comparaison se pilote entièrement depuis le menu déplié (« Détails ») :
+// plus de barre fixe en bas d'écran. Chaque ligne dépliée propose un bouton
+// « Comparer la sélection » qui s'active dès qu'au moins 2 buts sont cochés.
+function updateCompareUI() {
   const n = selected.size;
-  $('#compare-bar').hidden = n === 0;
-  const base = n + (n > 1 ? ' buts sélectionnés' : ' but sélectionné');
-  let hint = '';
-  if (n < 2) hint = ' — choisissez-en au moins 2';
-  else if (n >= 4) hint = ' — maximum atteint';
-  $('#compare-info').textContent = base + hint;
-  $('#compare-go').disabled = n < 2;
-}
-
-function clearCompare() {
-  selected.clear();
-  document.querySelectorAll('.compare-check').forEach((c) => { c.checked = false; });
-  document.querySelectorAll('.goal-row.selected').forEach((r) => r.classList.remove('selected'));
-  updateCompareBar();
+  const label = n >= 2
+    ? `⚖ Comparer la sélection (${n})`
+    : '⚖ Cochez au moins 2 buts';
+  document.querySelectorAll('.compare-launch').forEach((b) => {
+    b.disabled = n < 2;
+    b.textContent = label;
+  });
 }
 
 async function openCompare() {
@@ -539,6 +539,10 @@ function wireEvents() {
       btn.textContent = (open ? '▴' : '▾') + ' Détails';
       return;
     }
+    if (btn.dataset.action === 'compare') {
+      openCompare();
+      return;
+    }
     if (btn.dataset.action === 'edit') {
       const goal = (await getAllGoals()).find((g) => g.id === row.dataset.id);
       openDialog(goal);
@@ -565,11 +569,9 @@ function wireEvents() {
       selected.delete(cb.dataset.id);
       if (row) row.classList.remove('selected');
     }
-    updateCompareBar();
+    updateCompareUI();
   });
 
-  $('#compare-clear').addEventListener('click', clearCompare);
-  $('#compare-go').addEventListener('click', openCompare);
   $('#compare-close').addEventListener('click', () => $('#compare-dialog').close());
 }
 

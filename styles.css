@@ -404,16 +404,9 @@ a { color: var(--lime); }
 .col-details { text-align: right; }
 .toggle-details { white-space: nowrap; }
 
-.compare-bar {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  background: var(--surface);
-  border-top: 2px solid var(--purple);
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 16px; padding: 12px 24px; z-index: 40;
-}
-.compare-info { font-size: 0.86rem; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 8px; }
-.compare-info::before { content: "⚖"; color: var(--purple); font-size: 1rem; }
-.compare-actions { display: flex; gap: 10px; }
+/* La comparaison se déclenche depuis le menu déplié (« Détails ») via le bouton
+   .compare-launch — il n'y a plus de barre fixe en bas d'écran. */
+.compare-launch:not(:disabled) { color: var(--purple); font-weight: 700; }
 
 /* ------------------------------------------------------------ Dialog/form */
 dialog {
@@ -599,9 +592,5 @@ dialog::backdrop { background: rgba(5, 10, 8, 0.72); }
     text-align: center;
   }
 
-  .compare-bar { flex-direction: column; gap: 10px; padding: 14px; }
-  .compare-bar .btn { width: 100%; }
-  .compare-actions { width: 100%; flex-direction: column; }
-  .compare-info { justify-content: center; }
   .result-count { text-align: center; }
 }
