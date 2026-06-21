@@ -3,7 +3,7 @@
 // Repère de version VISIBLE (affiché en bas de page). Sert à vérifier d'un coup
 // d'œil, sur un appareil, si c'est bien la dernière version qui est chargée
 // (et pas une ancienne servie par le cache du service worker).
-const BUILD = 'v8 — menu déroulant réorganisé · 21 juin';
+const BUILD = 'v9 — correctif menu déroulant mobile · 21 juin';
 
 // ---------------------------------------------------------------------------
 // Application 100 % statique (GitHub Pages, sans backend).

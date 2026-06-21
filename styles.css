@@ -53,6 +53,11 @@
 }
 
 * { box-sizing: border-box; }
+/* Garantit que l'attribut [hidden] masque toujours l'élément, même quand une
+   règle de mise en page (ex. le mode « cartes » mobile qui force display:block
+   sur les <tr>) redéfinit display. Sans ça, la ligne de détails repliée
+   restait affichée sur mobile et tout le contexte s'étalait en vrac. */
+[hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; }
 
 body {
