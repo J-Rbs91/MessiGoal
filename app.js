@@ -23,7 +23,7 @@ const GITHUB = { owner: 'J-Rbs91', repo: 'MessiGoal' };
 let editingId = null;
 const Store = { cache: null };
 
-// Buts sélectionnés pour comparaison (max 2)
+// Buts sélectionnés pour comparaison (max 4)
 const selected = new Set();
 
 // Définition de tous les champs affichables (clé, libellé, formateur)
@@ -543,7 +543,7 @@ function wireEvents() {
     }
   });
 
-  // Sélection pour comparaison (max 2)
+  // Sélection pour comparaison (max 4)
   $('#goals-body').addEventListener('change', (e) => {
     const cb = e.target.closest('.compare-check');
     if (!cb) return;
