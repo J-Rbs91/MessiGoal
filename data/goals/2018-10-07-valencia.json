@@ -1,0 +1,18 @@
+{
+  "date": "2018-10-07",
+  "team": "FC Barcelone",
+  "opponent": "Valencia",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio de Mestalla",
+  "minute": 22,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "Luis Alberto Suárez Díaz",
+  "goalkeeper": "Norberto Murara Neto",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

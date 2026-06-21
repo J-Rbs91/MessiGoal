@@ -1,0 +1,18 @@
+{
+  "date": "2014-03-29",
+  "team": "FC Barcelone",
+  "opponent": "Espanyol",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Stage Front Stadium",
+  "minute": 76,
+  "bodyPart": "Pied gauche",
+  "goalType": "Pénalty",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

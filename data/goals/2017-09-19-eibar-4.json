@@ -1,0 +1,18 @@
+{
+  "date": "2017-09-19",
+  "team": "FC Barcelone",
+  "opponent": "Eibar",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 86,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Aleix Vidal Parreu",
+  "goalkeeper": "Marko Dmitrović",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

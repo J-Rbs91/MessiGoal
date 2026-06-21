@@ -1,0 +1,18 @@
+{
+  "date": "2007-06-09",
+  "team": "FC Barcelone",
+  "opponent": "Espanyol",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 56,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Anderson Luís de Souza",
+  "goalkeeper": "Idriss Carlos Kameni",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

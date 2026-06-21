@@ -1,0 +1,18 @@
+{
+  "date": "2007-05-20",
+  "team": "FC Barcelone",
+  "opponent": "Atlético Madrid",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Vicente Calderón",
+  "minute": 38,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Samuel Eto''o Fils",
+  "goalkeeper": "Iván Cuéllar Sacristán",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

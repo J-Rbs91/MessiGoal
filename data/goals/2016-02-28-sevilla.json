@@ -1,0 +1,18 @@
+{
+  "date": "2016-02-28",
+  "team": "FC Barcelone",
+  "opponent": "Sevilla",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 30,
+  "bodyPart": "Pied gauche",
+  "goalType": "Coup franc",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Sergio Rico González",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

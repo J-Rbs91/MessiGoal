@@ -1,0 +1,18 @@
+{
+  "date": "2011-11-19",
+  "team": "FC Barcelone",
+  "opponent": "Real Zaragoza",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 42,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Francesc Fàbregas i Soler",
+  "goalkeeper": "Roberto Jiménez Gago",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2010-11-20",
+  "team": "FC Barcelone",
+  "opponent": "Almería",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Power Horse Stadium – Estadio de los Juegos Mediterráneos",
+  "minute": 66,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Diego Alves Carreira",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

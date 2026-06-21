@@ -1,0 +1,18 @@
+{
+  "date": "2015-05-02",
+  "team": "FC Barcelone",
+  "opponent": "Córdoba CF",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Nuevo Arcángel",
+  "minute": 46,
+  "bodyPart": "Tête",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Daniel Alves da Silva",
+  "goalkeeper": "Juan Carlos Martín Corral",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2005-11-27",
+  "team": "FC Barcelone",
+  "opponent": "Racing Santander",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 51,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Samuel Eto''o Fils",
+  "goalkeeper": "Dudú Aouate",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

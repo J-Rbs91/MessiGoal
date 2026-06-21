@@ -1,0 +1,18 @@
+{
+  "date": "2017-05-21",
+  "team": "FC Barcelone",
+  "opponent": "Eibar",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 91,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Yoel Rodríguez Oterino",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2016-02-14",
+  "team": "FC Barcelone",
+  "opponent": "Celta Vigo",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 27,
+  "bodyPart": "Pied gauche",
+  "goalType": "Coup franc",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Sergio Álvarez Conde",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2019-03-17",
+  "team": "FC Barcelone",
+  "opponent": "Real Betis",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Benito Villamarín",
+  "minute": 46,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Luis Alberto Suárez Díaz",
+  "goalkeeper": "Pau López Sabata",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

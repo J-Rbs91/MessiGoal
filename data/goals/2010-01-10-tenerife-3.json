@@ -1,0 +1,18 @@
+{
+  "date": "2010-01-10",
+  "team": "FC Barcelone",
+  "opponent": "Tenerife",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Heliodoro Rodríguez Lopéz",
+  "minute": 74,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "Bojan Krkíc Pérez",
+  "goalkeeper": "Sergio Aragoneses Almeida",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

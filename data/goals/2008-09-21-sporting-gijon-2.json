@@ -1,0 +1,18 @@
+{
+  "date": "2008-09-21",
+  "team": "FC Barcelone",
+  "opponent": "Sporting Gijón",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Municipal El Molinón",
+  "minute": 89,
+  "bodyPart": "Tête",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Xavier Hernández Creus",
+  "goalkeeper": "Sergio Sánchez Sánchez",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

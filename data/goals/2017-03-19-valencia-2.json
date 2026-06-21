@@ -1,0 +1,18 @@
+{
+  "date": "2017-03-19",
+  "team": "FC Barcelone",
+  "opponent": "Valencia",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 51,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Javier Alejandro Mascherano",
+  "goalkeeper": "Diego Alves Carreira",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

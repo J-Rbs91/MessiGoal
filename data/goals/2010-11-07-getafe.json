@@ -1,0 +1,18 @@
+{
+  "date": "2010-11-07",
+  "team": "FC Barcelone",
+  "opponent": "Getafe",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Coliseum Alfonso Pérez",
+  "minute": 22,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "David Villa Sánchez",
+  "goalkeeper": "Jordi Codina Rodríguez",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

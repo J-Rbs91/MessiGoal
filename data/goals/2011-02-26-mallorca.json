@@ -1,0 +1,18 @@
+{
+  "date": "2011-02-26",
+  "team": "FC Barcelone",
+  "opponent": "Mallorca",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Visit Mallorca Estadi",
+  "minute": 37,
+  "bodyPart": "Tête",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Seydou Kéita",
+  "goalkeeper": "Dudú Aouate",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

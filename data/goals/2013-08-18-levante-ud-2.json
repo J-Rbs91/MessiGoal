@@ -1,0 +1,18 @@
+{
+  "date": "2013-08-18",
+  "team": "FC Barcelone",
+  "opponent": "Levante UD",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 41,
+  "bodyPart": "Pied gauche",
+  "goalType": "Pénalty",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Keylor Navas Gamboa",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

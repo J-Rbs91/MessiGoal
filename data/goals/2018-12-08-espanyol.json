@@ -1,0 +1,18 @@
+{
+  "date": "2018-12-08",
+  "team": "FC Barcelone",
+  "opponent": "Espanyol",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Stage Front Stadium",
+  "minute": 16,
+  "bodyPart": "Pied gauche",
+  "goalType": "Coup franc",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Diego López Rodríguez",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

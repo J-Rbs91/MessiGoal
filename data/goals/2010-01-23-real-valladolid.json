@@ -1,0 +1,18 @@
+{
+  "date": "2010-01-23",
+  "team": "FC Barcelone",
+  "opponent": "Real Valladolid",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Municipal José Zorrilla",
+  "minute": 55,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Zlatan Ibrahimović",
+  "goalkeeper": "Justo Wilmar Villar Viveros",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

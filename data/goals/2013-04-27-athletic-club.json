@@ -1,0 +1,18 @@
+{
+  "date": "2013-04-27",
+  "team": "FC Barcelone",
+  "opponent": "Athletic Club",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio San Mamés",
+  "minute": 66,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Thiago Alcântara do Nascimento",
+  "goalkeeper": "Gorka Iraizoz Moreno",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

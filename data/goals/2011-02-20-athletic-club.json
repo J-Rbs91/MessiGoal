@@ -1,0 +1,18 @@
+{
+  "date": "2011-02-20",
+  "team": "FC Barcelone",
+  "opponent": "Athletic Club",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 77,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Daniel Alves da Silva",
+  "goalkeeper": "Gorka Iraizoz Moreno",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2014-04-20",
+  "team": "FC Barcelone",
+  "opponent": "Athletic Club",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 73,
+  "bodyPart": "Pied gauche",
+  "goalType": "Coup franc",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Gorka Iraizoz Moreno",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

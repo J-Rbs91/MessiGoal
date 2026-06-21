@@ -1,0 +1,18 @@
+{
+  "date": "2009-02-01",
+  "team": "FC Barcelone",
+  "opponent": "Racing Santander",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Campos de Sport de El Sardinero",
+  "minute": 80,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Antonio Rodríguez Martínez",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

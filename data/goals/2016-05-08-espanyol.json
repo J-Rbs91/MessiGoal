@@ -1,0 +1,18 @@
+{
+  "date": "2016-05-08",
+  "team": "FC Barcelone",
+  "opponent": "Espanyol",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 7,
+  "bodyPart": "Pied gauche",
+  "goalType": "Coup franc",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Pau López Sabata",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

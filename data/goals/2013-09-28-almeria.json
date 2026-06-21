@@ -1,0 +1,18 @@
+{
+  "date": "2013-09-28",
+  "team": "FC Barcelone",
+  "opponent": "Almería",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Power Horse Stadium – Estadio de los Juegos Mediterráneos",
+  "minute": 20,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "Pedro Eliezer Rodríguez Ledesma",
+  "goalkeeper": "Esteban Andrés Suárez",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

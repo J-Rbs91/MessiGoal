@@ -1,0 +1,18 @@
+{
+  "date": "2020-06-30",
+  "team": "FC Barcelone",
+  "opponent": "Atlético Madrid",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 49,
+  "bodyPart": "Pied gauche",
+  "goalType": "Pénalty",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Jan Oblak",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

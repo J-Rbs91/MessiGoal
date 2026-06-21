@@ -1,0 +1,18 @@
+{
+  "date": "2012-11-11",
+  "team": "FC Barcelone",
+  "opponent": "Mallorca",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Visit Mallorca Estadi",
+  "minute": 43,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "Sergio Busquets i Burgos",
+  "goalkeeper": "Dudú Aouate",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

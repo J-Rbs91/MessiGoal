@@ -1,0 +1,18 @@
+{
+  "date": "2013-05-05",
+  "team": "FC Barcelone",
+  "opponent": "Real Betis",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 70,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Alexis Alejandro Sánchez Sánchez",
+  "goalkeeper": "Adrián San Miguel del Castillo",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

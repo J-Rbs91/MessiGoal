@@ -1,0 +1,18 @@
+{
+  "date": "2017-12-10",
+  "team": "FC Barcelone",
+  "opponent": "Villarreal",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio de la Cerámica",
+  "minute": 82,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Sergio Busquets i Burgos",
+  "goalkeeper": "Sergio Asenjo Andrés",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

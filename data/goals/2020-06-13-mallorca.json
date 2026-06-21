@@ -1,0 +1,18 @@
+{
+  "date": "2020-06-13",
+  "team": "FC Barcelone",
+  "opponent": "Mallorca",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Visit Mallorca Estadi",
+  "minute": 92,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Luis Alberto Suárez Díaz",
+  "goalkeeper": "Manuel Reina Rodríguez",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

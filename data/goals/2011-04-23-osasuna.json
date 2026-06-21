@@ -1,0 +1,18 @@
+{
+  "date": "2011-04-23",
+  "team": "FC Barcelone",
+  "opponent": "Osasuna",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 88,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Daniel Alves da Silva",
+  "goalkeeper": "Ricardo López Felipe",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

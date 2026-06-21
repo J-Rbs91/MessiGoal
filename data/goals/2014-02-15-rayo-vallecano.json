@@ -1,0 +1,18 @@
+{
+  "date": "2014-02-15",
+  "team": "FC Barcelone",
+  "opponent": "Rayo Vallecano",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 35,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "Francesc Fàbregas i Soler",
+  "goalkeeper": "Rubén Iván Martínez Andrade",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2012-02-26",
+  "team": "FC Barcelone",
+  "opponent": "Atlético Madrid",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Vicente Calderón",
+  "minute": 80,
+  "bodyPart": "Pied gauche",
+  "goalType": "Coup franc",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Thibaut Courtois",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

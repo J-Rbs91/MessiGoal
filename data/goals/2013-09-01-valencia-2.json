@@ -1,0 +1,18 @@
+{
+  "date": "2013-09-01",
+  "team": "FC Barcelone",
+  "opponent": "Valencia",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio de Mestalla",
+  "minute": 38,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Francesc Fàbregas i Soler",
+  "goalkeeper": "Diego Alves Carreira",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

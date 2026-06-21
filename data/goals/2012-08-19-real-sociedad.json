@@ -1,0 +1,18 @@
+{
+  "date": "2012-08-19",
+  "team": "FC Barcelone",
+  "opponent": "Real Sociedad",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 10,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Pedro Eliezer Rodríguez Ledesma",
+  "goalkeeper": "Claudio Andrés Bravo Muñoz",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2007-06-17",
+  "team": "FC Barcelone",
+  "opponent": "Gimnàstic Tarragona",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Nou Estadi Costa Daurada",
+  "minute": 50,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Rubén Pérez Chueca",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

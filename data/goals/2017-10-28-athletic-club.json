@@ -1,0 +1,18 @@
+{
+  "date": "2017-10-28",
+  "team": "FC Barcelone",
+  "opponent": "Athletic Club",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "San Mamés Barria",
+  "minute": 35,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Jordi Alba Ramos",
+  "goalkeeper": "Kepa Arrizabalaga Revuelta",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2018-12-16",
+  "team": "FC Barcelone",
+  "opponent": "Levante UD",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Ciudad de Valencia",
+  "minute": 42,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Sergio Busquets i Burgos",
+  "goalkeeper": "Oier Olazábal Paredes",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

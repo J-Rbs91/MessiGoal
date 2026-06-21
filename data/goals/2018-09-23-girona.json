@@ -1,0 +1,18 @@
+{
+  "date": "2018-09-23",
+  "team": "FC Barcelone",
+  "opponent": "Girona",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 18,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Arturo Erasmo Vidal Pardo",
+  "goalkeeper": "Yassine Bounou",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

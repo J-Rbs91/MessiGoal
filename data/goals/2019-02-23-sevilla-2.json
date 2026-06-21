@@ -1,0 +1,18 @@
+{
+  "date": "2019-02-23",
+  "team": "FC Barcelone",
+  "opponent": "Sevilla",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Ramón Sánchez Pizjuán",
+  "minute": 66,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Ousmane Dembélé",
+  "goalkeeper": "Tomáš Vaclík",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

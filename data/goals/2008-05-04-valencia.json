@@ -1,0 +1,18 @@
+{
+  "date": "2008-05-04",
+  "team": "FC Barcelone",
+  "opponent": "Valencia",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 5,
+  "bodyPart": "Pied gauche",
+  "goalType": "Pénalty",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

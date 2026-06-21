@@ -1,0 +1,18 @@
+{
+  "date": "2012-09-15",
+  "team": "FC Barcelone",
+  "opponent": "Getafe",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Coliseum Alfonso Pérez",
+  "minute": 77,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Miguel Ángel Moyà Rumbo",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

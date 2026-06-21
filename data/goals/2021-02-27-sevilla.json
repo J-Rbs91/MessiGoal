@@ -1,0 +1,18 @@
+{
+  "date": "2021-02-27",
+  "team": "FC Barcelone",
+  "opponent": "Sevilla",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Ramón Sánchez Pizjuán",
+  "minute": 84,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Yassine Bounou",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

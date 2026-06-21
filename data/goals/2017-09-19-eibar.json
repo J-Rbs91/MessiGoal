@@ -1,0 +1,18 @@
+{
+  "date": "2017-09-19",
+  "team": "FC Barcelone",
+  "opponent": "Eibar",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 20,
+  "bodyPart": "Pied gauche",
+  "goalType": "Pénalty",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2019-04-02",
+  "team": "FC Barcelone",
+  "opponent": "Villarreal",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio de la Cerámica",
+  "minute": 89,
+  "bodyPart": "Pied gauche",
+  "goalType": "Coup franc",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Sergio Asenjo Andrés",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

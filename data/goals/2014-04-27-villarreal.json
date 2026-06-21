@@ -1,0 +1,18 @@
+{
+  "date": "2014-04-27",
+  "team": "FC Barcelone",
+  "opponent": "Villarreal",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio de la Cerámica",
+  "minute": 82,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Francesc Fàbregas i Soler",
+  "goalkeeper": "Sergio Asenjo Andrés",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

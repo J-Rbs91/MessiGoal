@@ -1,0 +1,18 @@
+{
+  "date": "2013-08-18",
+  "team": "FC Barcelone",
+  "opponent": "Levante UD",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 11,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Pedro Eliezer Rodríguez Ledesma",
+  "goalkeeper": "Keylor Navas Gamboa",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

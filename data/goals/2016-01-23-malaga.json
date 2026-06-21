@@ -1,0 +1,18 @@
+{
+  "date": "2016-01-23",
+  "team": "FC Barcelone",
+  "opponent": "Málaga",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio La Rosaleda",
+  "minute": 50,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Adriano Correia Claro",
+  "goalkeeper": "Idriss Carlos Kameni",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2019-01-27",
+  "team": "FC Barcelone",
+  "opponent": "Girona",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadi Municipal de Montilivi",
+  "minute": 67,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Jordi Alba Ramos",
+  "goalkeeper": "Yassine Bounou",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

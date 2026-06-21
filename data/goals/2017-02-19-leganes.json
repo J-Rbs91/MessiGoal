@@ -1,0 +1,18 @@
+{
+  "date": "2017-02-19",
+  "team": "FC Barcelone",
+  "opponent": "Leganés",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 3,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Luis Alberto Suárez Díaz",
+  "goalkeeper": "Iago Herrerín Buisán",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

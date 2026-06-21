@@ -1,0 +1,18 @@
+{
+  "date": "2018-03-31",
+  "team": "FC Barcelone",
+  "opponent": "Sevilla",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Ramón Sánchez Pizjuán",
+  "minute": 88,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "Philippe Coutinho Correia",
+  "goalkeeper": "Sergio Rico González",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2006-10-15",
+  "team": "FC Barcelone",
+  "opponent": "Sevilla",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 80,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Xavier Hernández Creus",
+  "goalkeeper": "Andrés Palop Cervera",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

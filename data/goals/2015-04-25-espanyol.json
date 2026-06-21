@@ -1,0 +1,18 @@
+{
+  "date": "2015-04-25",
+  "team": "FC Barcelone",
+  "opponent": "Espanyol",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Stage Front Stadium",
+  "minute": 24,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Luis Alberto Suárez Díaz",
+  "goalkeeper": "Francisco Casilla Cortés",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

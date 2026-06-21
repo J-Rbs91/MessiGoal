@@ -1,0 +1,18 @@
+{
+  "date": "2006-01-29",
+  "team": "FC Barcelone",
+  "opponent": "Mallorca",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Visit Mallorca Estadi",
+  "minute": 75,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Sylvio Mendes Campos Junior",
+  "goalkeeper": "Miguel Ángel Moyà Rumbo",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2013-03-30",
+  "team": "FC Barcelone",
+  "opponent": "Celta Vigo",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Abanca-Balaídos",
+  "minute": 72,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Cristian Tello Herrera",
+  "goalkeeper": "Javier Varas Herrera",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2009-05-02",
+  "team": "FC Barcelone",
+  "opponent": "Real Madrid",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Bernabéu",
+  "minute": 74,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Xavier Hernández Creus",
+  "goalkeeper": "Iker Casillas Fernández",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

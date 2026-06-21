@@ -1,0 +1,18 @@
+{
+  "date": "2012-04-14",
+  "team": "FC Barcelone",
+  "opponent": "Levante UD",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Ciudad de Valencia",
+  "minute": 63,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Alexis Alejandro Sánchez Sánchez",
+  "goalkeeper": "Gustavo Adolfo Munúa Vera",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2010-03-14",
+  "team": "FC Barcelone",
+  "opponent": "Valencia",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 81,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Thierry Henry",
+  "goalkeeper": "César Sánchez Domínguez",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2012-04-29",
+  "team": "FC Barcelone",
+  "opponent": "Rayo Vallecano",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio de Vallecas",
+  "minute": 15,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Pedro Eliezer Rodríguez Ledesma",
+  "goalkeeper": "David Cobeño Iglesias",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

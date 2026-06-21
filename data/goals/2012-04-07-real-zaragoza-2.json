@@ -1,0 +1,18 @@
+{
+  "date": "2012-04-07",
+  "team": "FC Barcelone",
+  "opponent": "Real Zaragoza",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio de la Romareda",
+  "minute": 85,
+  "bodyPart": "Pied gauche",
+  "goalType": "Pénalty",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

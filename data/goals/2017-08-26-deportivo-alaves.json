@@ -1,0 +1,18 @@
+{
+  "date": "2017-08-26",
+  "team": "FC Barcelone",
+  "opponent": "Deportivo Alavés",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio de Mendizorroza",
+  "minute": 54,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Jordi Alba Ramos",
+  "goalkeeper": "Fernando Pacheco Flores",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

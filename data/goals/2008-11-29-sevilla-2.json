@@ -1,0 +1,18 @@
+{
+  "date": "2008-11-29",
+  "team": "FC Barcelone",
+  "opponent": "Sevilla",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Ramón Sánchez Pizjuán",
+  "minute": 91,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Aliaksandr Hleb",
+  "goalkeeper": "Andrés Palop Cervera",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

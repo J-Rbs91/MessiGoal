@@ -1,0 +1,18 @@
+{
+  "date": "2019-12-07",
+  "team": "FC Barcelone",
+  "opponent": "Mallorca",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 40,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "Ivan Rakitić",
+  "goalkeeper": "Manuel Reina Rodríguez",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

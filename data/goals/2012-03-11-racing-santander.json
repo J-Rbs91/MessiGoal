@@ -1,0 +1,18 @@
+{
+  "date": "2012-03-11",
+  "team": "FC Barcelone",
+  "opponent": "Racing Santander",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Campos de Sport de El Sardinero",
+  "minute": 28,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Francesc Fàbregas i Soler",
+  "goalkeeper": "Mario Fernández Cuesta",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

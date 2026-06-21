@@ -1,0 +1,18 @@
+{
+  "date": "2019-10-19",
+  "team": "FC Barcelone",
+  "opponent": "Eibar",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Municipal de Ipurúa",
+  "minute": 57,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Antoine Griezmann",
+  "goalkeeper": "Marko Dmitrović",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

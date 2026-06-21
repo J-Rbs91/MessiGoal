@@ -1,0 +1,18 @@
+{
+  "date": "2014-09-21",
+  "team": "FC Barcelone",
+  "opponent": "Levante UD",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Ciudad de Valencia",
+  "minute": 76,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Jesús Fernández Collado",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

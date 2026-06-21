@@ -1,0 +1,18 @@
+{
+  "date": "2018-03-01",
+  "team": "FC Barcelone",
+  "opponent": "Las Palmas",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio de Gran Canaria",
+  "minute": 20,
+  "bodyPart": "Pied gauche",
+  "goalType": "Coup franc",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Leandro Chichizola",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

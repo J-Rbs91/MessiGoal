@@ -1,0 +1,18 @@
+{
+  "date": "2013-09-24",
+  "team": "FC Barcelone",
+  "opponent": "Real Sociedad",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 7,
+  "bodyPart": "Tête",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Neymar da Silva Santos Junior",
+  "goalkeeper": "Claudio Andrés Bravo Muñoz",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

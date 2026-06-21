@@ -1,0 +1,18 @@
+{
+  "date": "2011-08-29",
+  "team": "FC Barcelone",
+  "opponent": "Villarreal",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 73,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Thiago Alcântara do Nascimento",
+  "goalkeeper": "Diego López Rodríguez",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

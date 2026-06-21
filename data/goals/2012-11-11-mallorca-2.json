@@ -1,0 +1,18 @@
+{
+  "date": "2012-11-11",
+  "team": "FC Barcelone",
+  "opponent": "Mallorca",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Visit Mallorca Estadi",
+  "minute": 69,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Alexis Alejandro Sánchez Sánchez",
+  "goalkeeper": "Dudú Aouate",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

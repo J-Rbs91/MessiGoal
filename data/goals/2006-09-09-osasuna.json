@@ -1,0 +1,18 @@
+{
+  "date": "2006-09-09",
+  "team": "FC Barcelone",
+  "opponent": "Osasuna",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 36,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Samuel Eto''o Fils",
+  "goalkeeper": "Ricardo López Felipe",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

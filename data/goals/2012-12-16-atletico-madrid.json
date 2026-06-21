@@ -1,0 +1,18 @@
+{
+  "date": "2012-12-16",
+  "team": "FC Barcelone",
+  "opponent": "Atlético Madrid",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 56,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "Alexis Alejandro Sánchez Sánchez",
+  "goalkeeper": "Thibaut Courtois",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -68,12 +68,22 @@ Voir [CONTRIBUTING.md](CONTRIBUTING.md). Trois façons : depuis le site (issue
 pré-remplie), via une [issue](https://github.com/J-Rbs91/MessiGoal/issues/new/choose),
 ou via une Pull Request ajoutant un fichier dans `data/goals/`.
 
-La base recense déjà l'**intégralité des buts de Messi en sélection avec
-l'Argentine** (120 buts, source : Wikipédia), avec date, adversaire,
-compétition et stade. Les détails fins (minute, gardien, passeur, partie du
-corps, placement…) restent à compléter pour la plupart, et les buts en **club**
-(Barça, PSG, Inter Miami) ne sont couverts que par un échantillon de buts
-emblématiques : la communauté est invitée à compléter le reste de la carrière.
+La base recense déjà **600 buts** :
+
+- l'**intégralité des buts en sélection avec l'Argentine** (120 buts, source :
+  Wikipédia), avec date, adversaire, compétition et stade ;
+- **tous les buts de Messi en Liga avec le FC Barcelone** (~470 buts, source :
+  [StatsBomb Open Data](https://github.com/statsbomb/open-data)), avec minute,
+  partie du corps, position au tir, et le plus souvent le passeur et le gardien
+  adverse.
+
+La provenance de chaque but figure dans le champ `source`. Restent à compléter
+par la communauté : les autres compétitions en club (Ligue des champions, Copa
+del Rey…), le PSG et l'Inter Miami, ainsi que les détails fins manquants
+(placement, ville, vidéo…).
+
+> Les buts en Liga proviennent des **données ouvertes StatsBomb** ; conformément
+> à leur licence, la source est créditée sur le site et dans chaque fiche.
 
 ## Licence
 

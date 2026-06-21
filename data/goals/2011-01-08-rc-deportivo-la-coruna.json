@@ -1,0 +1,18 @@
+{
+  "date": "2011-01-08",
+  "team": "FC Barcelone",
+  "opponent": "RC Deportivo La Coruña",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Abanca-Riazor",
+  "minute": 51,
+  "bodyPart": "Pied gauche",
+  "goalType": "Coup franc",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Daniel Aranzubia Aguado",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

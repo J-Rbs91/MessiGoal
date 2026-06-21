@@ -1,0 +1,18 @@
+{
+  "date": "2016-03-03",
+  "team": "FC Barcelone",
+  "opponent": "Rayo Vallecano",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio de Vallecas",
+  "minute": 52,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Juan Carlos Martín Corral",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

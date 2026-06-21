@@ -1,0 +1,18 @@
+{
+  "date": "2009-03-22",
+  "team": "FC Barcelone",
+  "opponent": "Málaga",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 24,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Xavier Hernández Creus",
+  "goalkeeper": "Iñaki Goitia Peña",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

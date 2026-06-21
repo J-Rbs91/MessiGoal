@@ -1,0 +1,18 @@
+{
+  "date": "2008-11-16",
+  "team": "FC Barcelone",
+  "opponent": "Recreativo Huelva",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Nuevo Colombino",
+  "minute": 50,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Daniel Alves da Silva",
+  "goalkeeper": "Asier Riesgo Unamuno",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

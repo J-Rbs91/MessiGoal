@@ -1,0 +1,18 @@
+{
+  "date": "2016-09-17",
+  "team": "FC Barcelone",
+  "opponent": "Leganés",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Municipal de Butarque",
+  "minute": 54,
+  "bodyPart": "Pied gauche",
+  "goalType": "Pénalty",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

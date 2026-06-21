@@ -1,0 +1,18 @@
+{
+  "date": "2015-01-18",
+  "team": "FC Barcelone",
+  "opponent": "RC Deportivo La Coruña",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Abanca-Riazor",
+  "minute": 9,
+  "bodyPart": "Tête",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Ivan Rakitić",
+  "goalkeeper": "Fabricio Martín Agosto Ramírez",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

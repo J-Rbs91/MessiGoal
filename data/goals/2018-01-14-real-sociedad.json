@@ -1,0 +1,18 @@
+{
+  "date": "2018-01-14",
+  "team": "FC Barcelone",
+  "opponent": "Real Sociedad",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Reale Arena",
+  "minute": 84,
+  "bodyPart": "Pied gauche",
+  "goalType": "Coup franc",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Gerónimo Rulli",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

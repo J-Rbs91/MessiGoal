@@ -1,0 +1,18 @@
+{
+  "date": "2009-09-12",
+  "team": "FC Barcelone",
+  "opponent": "Getafe",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Coliseum Alfonso Pérez",
+  "minute": 79,
+  "bodyPart": "Tête",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Zlatan Ibrahimović",
+  "goalkeeper": "Óscar Alfredo Ustari",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

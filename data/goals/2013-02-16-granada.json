@@ -1,0 +1,18 @@
+{
+  "date": "2013-02-16",
+  "team": "FC Barcelone",
+  "opponent": "Granada",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Nuevo Los Cármenes",
+  "minute": 49,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Antonio Rodríguez Martínez",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

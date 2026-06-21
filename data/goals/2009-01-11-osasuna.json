@@ -1,0 +1,18 @@
+{
+  "date": "2009-01-11",
+  "team": "FC Barcelone",
+  "opponent": "Osasuna",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio El Sadar",
+  "minute": 84,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Roberto Fernández Alvarellos",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

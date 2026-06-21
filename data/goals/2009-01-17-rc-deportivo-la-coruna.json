@@ -1,0 +1,18 @@
+{
+  "date": "2009-01-17",
+  "team": "FC Barcelone",
+  "opponent": "RC Deportivo La Coruña",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 20,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Xavier Hernández Creus",
+  "goalkeeper": "Daniel Aranzubia Aguado",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

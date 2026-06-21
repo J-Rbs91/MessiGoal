@@ -1,0 +1,18 @@
+{
+  "date": "2012-12-09",
+  "team": "FC Barcelone",
+  "opponent": "Real Betis",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Benito Villamarín",
+  "minute": 15,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Andrés Iniesta Luján",
+  "goalkeeper": "Adrián San Miguel del Castillo",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

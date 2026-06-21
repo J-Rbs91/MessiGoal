@@ -1,0 +1,18 @@
+{
+  "date": "2021-03-15",
+  "team": "FC Barcelone",
+  "opponent": "Huesca",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 12,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "Sergio Busquets i Burgos",
+  "goalkeeper": "Álvaro Fernández Llorente",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

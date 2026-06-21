@@ -1,0 +1,18 @@
+{
+  "date": "2008-12-13",
+  "team": "FC Barcelone",
+  "opponent": "Real Madrid",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 91,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Thierry Henry",
+  "goalkeeper": "Iker Casillas Fernández",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2012-10-27",
+  "team": "FC Barcelone",
+  "opponent": "Rayo Vallecano",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio de Vallecas",
+  "minute": 47,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Martín Montoya Torralbo",
+  "goalkeeper": "Rubén Iván Martínez Andrade",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

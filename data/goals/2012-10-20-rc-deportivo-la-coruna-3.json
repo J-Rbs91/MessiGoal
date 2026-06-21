@@ -1,0 +1,18 @@
+{
+  "date": "2012-10-20",
+  "team": "FC Barcelone",
+  "opponent": "RC Deportivo La Coruña",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Abanca-Riazor",
+  "minute": 76,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Daniel Aranzubia Aguado",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

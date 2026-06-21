@@ -1,0 +1,18 @@
+{
+  "date": "2012-12-22",
+  "team": "FC Barcelone",
+  "opponent": "Real Valladolid",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Municipal José Zorrilla",
+  "minute": 58,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Xavier Hernández Creus",
+  "goalkeeper": "Daniel Hernández Santos",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

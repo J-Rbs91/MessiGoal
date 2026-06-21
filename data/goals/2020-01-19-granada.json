@@ -1,0 +1,18 @@
+{
+  "date": "2020-01-19",
+  "team": "FC Barcelone",
+  "opponent": "Granada",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 75,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Arturo Erasmo Vidal Pardo",
+  "goalkeeper": "Rui Tiago Dantas da Silva",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2012-11-17",
+  "team": "FC Barcelone",
+  "opponent": "Real Zaragoza",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 59,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Hors de la surface",
+  "placement": "",
+  "assist": "Martín Montoya Torralbo",
+  "goalkeeper": "Roberto Jiménez Gago",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2015-03-14",
+  "team": "FC Barcelone",
+  "opponent": "Eibar",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Municipal de Ipurúa",
+  "minute": 53,
+  "bodyPart": "Tête",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Ivan Rakitić",
+  "goalkeeper": "Jaime Jiménez Merlo",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

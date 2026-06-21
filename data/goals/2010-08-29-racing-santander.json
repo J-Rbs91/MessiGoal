@@ -1,0 +1,18 @@
+{
+  "date": "2010-08-29",
+  "team": "FC Barcelone",
+  "opponent": "Racing Santander",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Campos de Sport de El Sardinero",
+  "minute": 2,
+  "bodyPart": "Pied droit",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Andrés Iniesta Luján",
+  "goalkeeper": "Antonio Rodríguez Martínez",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

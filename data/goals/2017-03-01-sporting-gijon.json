@@ -1,0 +1,18 @@
+{
+  "date": "2017-03-01",
+  "team": "FC Barcelone",
+  "opponent": "Sporting Gijón",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 8,
+  "bodyPart": "Tête",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Javier Alejandro Mascherano",
+  "goalkeeper": "Iván Cuéllar Sacristán",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

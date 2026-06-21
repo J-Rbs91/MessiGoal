@@ -1,0 +1,18 @@
+{
+  "date": "2009-10-25",
+  "team": "FC Barcelone",
+  "opponent": "Real Zaragoza",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 79,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Andrés Iniesta Luján",
+  "goalkeeper": "Juan Pablo Carrizo",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

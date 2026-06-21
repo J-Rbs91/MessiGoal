@@ -1,0 +1,18 @@
+{
+  "date": "2018-04-07",
+  "team": "FC Barcelone",
+  "opponent": "Leganés",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 86,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Ousmane Dembélé",
+  "goalkeeper": "Iván Cuéllar Sacristán",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

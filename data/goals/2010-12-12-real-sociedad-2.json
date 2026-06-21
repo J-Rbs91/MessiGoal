@@ -1,0 +1,18 @@
+{
+  "date": "2010-12-12",
+  "team": "FC Barcelone",
+  "opponent": "Real Sociedad",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 86,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Bojan Krkíc Pérez",
+  "goalkeeper": "Claudio Andrés Bravo Muñoz",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2008-09-21",
+  "team": "FC Barcelone",
+  "opponent": "Sporting Gijón",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio Municipal El Molinón",
+  "minute": 84,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Sergio Sánchez Sánchez",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

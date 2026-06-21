@@ -1,0 +1,18 @@
+{
+  "date": "2010-12-04",
+  "team": "FC Barcelone",
+  "opponent": "Osasuna",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio El Sadar",
+  "minute": 64,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "David Villa Sánchez",
+  "goalkeeper": "Ricardo López Felipe",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

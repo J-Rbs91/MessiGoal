@@ -1,0 +1,18 @@
+{
+  "date": "2019-10-29",
+  "team": "FC Barcelone",
+  "opponent": "Real Valladolid",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Spotify Camp Nou",
+  "minute": 74,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Ivan Rakitić",
+  "goalkeeper": "Jordi Masip López",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

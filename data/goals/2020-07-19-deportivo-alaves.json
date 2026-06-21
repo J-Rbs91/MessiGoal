@@ -1,0 +1,18 @@
+{
+  "date": "2020-07-19",
+  "team": "FC Barcelone",
+  "opponent": "Deportivo Alavés",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio de Mendizorroza",
+  "minute": 33,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "Ricard Puig Martí",
+  "goalkeeper": "Roberto Jiménez Gago",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}

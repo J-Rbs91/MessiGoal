@@ -1,0 +1,18 @@
+{
+  "date": "2017-02-11",
+  "team": "FC Barcelone",
+  "opponent": "Deportivo Alavés",
+  "competition": "Liga",
+  "city": "",
+  "stadium": "Estadio de Mendizorroza",
+  "minute": 58,
+  "bodyPart": "Pied gauche",
+  "goalType": "En jeu",
+  "position": "Dans la surface",
+  "placement": "",
+  "assist": "",
+  "goalkeeper": "Fernando Pacheco Flores",
+  "videoUrl": "",
+  "source": "StatsBomb Open Data (github.com/statsbomb/open-data)",
+  "contributor": "MessiGoal (import StatsBomb)"
+}
