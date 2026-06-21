@@ -27,8 +27,10 @@ const Store = { cache: null };
 const selected = new Set();
 
 // Définition de tous les champs affichables (clé, libellé, formateur)
+// Le n° du but est calculé chronologiquement (cf. assignNumbers) : le tout
+// premier but de la carrière porte le n°1, le plus récent le n°N.
 const FIELDS = [
-  ['goalNumber', 'N° du but', (g) => (g.goalNumber != null ? '#' + g.goalNumber : '')],
+  ['goalNumber', 'N° du but', (g) => (g._num != null ? '#' + g._num : '')],
   ['date', 'Date', (g) => formatDate(g.date)],
   ['team', 'Équipe de Messi', (g) => g.team],
   ['opponent', 'Adversaire', (g) => g.opponent],
@@ -45,8 +47,14 @@ const FIELDS = [
   ['source', 'Source', (g) => g.source],
 ];
 
-// Champs masqués dans la ligne principale, révélés via « Détails »
-const DETAIL_KEYS = ['city', 'stadium', 'position', 'bodyPart', 'placement', 'assist', 'goalkeeper', 'source'];
+// Données principales affichées directement sur la ligne : n° du but,
+// adversaire, compétition. Tout le reste est révélé via « Détails ».
+// (date, équipe, minute, type, vidéo… → données complémentaires.)
+const DETAIL_KEYS = [
+  'date', 'team', 'minute', 'goalType', 'video',
+  'city', 'stadium', 'position', 'bodyPart', 'placement',
+  'assist', 'goalkeeper', 'source',
+];
 
 const $ = (sel) => document.querySelector(sel);
 
@@ -101,8 +109,24 @@ async function getAllGoals() {
     const res = await fetch('./goals.json', { cache: 'no-store' });
     if (!res.ok) throw new Error('Données indisponibles (goals.json introuvable)');
     Store.cache = await res.json();
+    assignNumbers(Store.cache);
   }
   return Store.cache;
+}
+
+// Attribue un n° de but chronologique et stable : tous les buts sont classés
+// du plus ancien au plus récent, le plus ancien reçoit le n°1 et le plus
+// récent le n°N. Ce numéro (g._num) est calculé une seule fois sur l'ensemble
+// des buts : il ne change donc jamais, quels que soient les filtres ou le tri.
+function assignNumbers(goals) {
+  goals
+    .slice()
+    .sort((a, b) => {
+      const d = String(a.date).localeCompare(String(b.date));
+      if (d !== 0) return d;
+      return (a.minute ?? 0) - (b.minute ?? 0);
+    })
+    .forEach((g, i) => { g._num = i + 1; });
 }
 
 function applyFilters(goals, q) {
@@ -124,7 +148,7 @@ function applyFilters(goals, q) {
   r.sort((a, b) => {
     if (sort === 'date_asc') return String(a.date).localeCompare(String(b.date));
     if (sort === 'minute') return (a.minute ?? 999) - (b.minute ?? 999);
-    if (sort === 'number') return (a.goalNumber ?? Infinity) - (b.goalNumber ?? Infinity);
+    if (sort === 'number') return (a._num ?? Infinity) - (b._num ?? Infinity);
     return String(b.date).localeCompare(String(a.date));
   });
   return r;
@@ -259,40 +283,44 @@ function renderGoals(goals) {
   const body = $('#goals-body');
   $('#empty-state').hidden = goals.length > 0;
   body.innerHTML = goals.map((g) => {
-    const typeClass = g.goalType ? 'type-' + g.goalType.replace(/\s+/g, '.') : '';
-    const vurl = safeUrl(g.videoUrl);
-    const video = vurl
-      ? `<a class="video-link" href="${escapeHtml(vurl)}" target="_blank" rel="noopener noreferrer">▶ Voir</a>`
-      : '<span class="muted">—</span>';
     const checked = selected.has(g.id) ? 'checked' : '';
-    const details = DETAIL_KEYS.map((k) => {
-      const f = FIELDS.find((x) => x[0] === k);
-      const raw = f[2](g);
-      let value;
-      if (k === 'source' && safeUrl(raw)) {
-        value = `<a class="video-link" href="${escapeHtml(safeUrl(raw))}" target="_blank" rel="noopener noreferrer">${escapeHtml(sourceLabel(raw))}</a>`;
-      } else {
-        value = escapeHtml(raw) || '—';
-      }
-      return `<div class="detail-item"><span class="detail-label">${f[1]}</span><span class="detail-value">${value}</span></div>`;
-    }).join('');
+    const details = DETAIL_KEYS.map((k) => detailItem(k, g)).join('');
     return `<tr class="goal-row" data-id="${escapeHtml(g.id)}">
       <td class="col-compare" data-label="Comparer"><input type="checkbox" class="compare-check" data-id="${escapeHtml(g.id)}" ${checked} aria-label="Sélectionner pour comparer" /></td>
-      <td data-label="N°">${g.goalNumber != null ? '#' + escapeHtml(g.goalNumber) : '—'}</td>
-      <td data-label="Date">${formatDate(g.date)}</td>
-      <td data-label="Équipe">${escapeHtml(g.team) || '—'}</td>
+      <td data-label="N°">${g._num != null ? '#' + escapeHtml(g._num) : '—'}</td>
       <td class="opponent" data-label="Adversaire">${escapeHtml(g.opponent)}</td>
       <td data-label="Compétition">${escapeHtml(g.competition) || '—'}</td>
-      <td data-label="Min.">${g.minute != null ? escapeHtml(g.minute) + "'" : '—'}</td>
-      <td data-label="Type">${g.goalType ? `<span class="badge ${typeClass}">${escapeHtml(g.goalType)}</span>` : '—'}</td>
-      <td data-label="Vidéo">${video}</td>
       <td class="col-details" data-label=""><button class="btn-icon toggle-details" data-action="toggle" aria-expanded="false">▾ Détails</button></td>
       <td class="col-action actions" data-label=""><button class="btn-icon" data-action="edit" title="Proposer une correction">✏️ Proposer</button></td>
     </tr>
     <tr class="details-row" hidden>
-      <td colspan="11"><div class="details-grid">${details}</div></td>
+      <td colspan="6"><div class="details-grid">${details}</div></td>
     </tr>`;
   }).join('');
+}
+
+// Rend une donnée complémentaire (label + valeur) pour le menu déroulant.
+// Cas particuliers : vidéo et source → lien cliquable ; type de but → badge.
+function detailItem(key, g) {
+  if (key === 'video') {
+    const u = safeUrl(g.videoUrl);
+    const value = u
+      ? `<a class="video-link" href="${escapeHtml(u)}" target="_blank" rel="noopener noreferrer">▶ Voir</a>`
+      : '—';
+    return `<div class="detail-item"><span class="detail-label">Vidéo</span><span class="detail-value">${value}</span></div>`;
+  }
+  const f = FIELDS.find((x) => x[0] === key);
+  const raw = f[2](g);
+  let value;
+  if (key === 'source' && safeUrl(raw)) {
+    value = `<a class="video-link" href="${escapeHtml(safeUrl(raw))}" target="_blank" rel="noopener noreferrer">${escapeHtml(sourceLabel(raw))}</a>`;
+  } else if (key === 'goalType' && raw) {
+    const typeClass = 'type-' + g.goalType.replace(/\s+/g, '.');
+    value = `<span class="badge ${typeClass}">${escapeHtml(raw)}</span>`;
+  } else {
+    value = escapeHtml(raw) || '—';
+  }
+  return `<div class="detail-item"><span class="detail-label">${f[1]}</span><span class="detail-value">${value}</span></div>`;
 }
 
 // ---------------------------------------------------------------------------

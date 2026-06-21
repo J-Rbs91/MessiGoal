@@ -250,9 +250,8 @@ body {
 .goals-table td { color: var(--muted); font-variant-numeric: tabular-nums; }
 .goals-table td.opponent { color: var(--text); font-weight: 600; }
 
-/* colonnes numériques en mono */
-.goals-table td:nth-child(1),
-.goals-table td:nth-child(5) { font-family: var(--mono); color: var(--text); }
+/* colonne N° en mono */
+.goals-table td:nth-child(2) { font-family: var(--mono); color: var(--text); }
 
 .badge {
   display: inline-block;
