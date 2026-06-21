@@ -48,10 +48,11 @@ const FIELDS = [
 ];
 
 // Données principales affichées directement sur la ligne : n° du but,
-// adversaire, compétition. Tout le reste est révélé via « Détails », organisé
-// en blocs façon fiche d'archive (Contexte, Action, Acteurs, Preuves).
+// adversaire, compétition. Tout le reste est révélé via « Détails » (un détail
+// par ligne), organisé en blocs façon fiche d'archive. La compétition n'est pas
+// répétée ici puisqu'elle figure déjà sur la ligne principale.
 const DETAIL_GROUPS = [
-  ['Contexte', ['date', 'team', 'competition', 'city', 'stadium']],
+  ['Contexte', ['date', 'team', 'city', 'stadium']],
   ['Action', ['minute', 'goalType', 'bodyPart', 'position', 'placement']],
   ['Acteurs', ['assist', 'goalkeeper']],
   ['Preuves', ['video', 'source']],
@@ -298,15 +299,19 @@ function renderGoals(goals) {
       ? `<span class="goal-no">${escapeHtml(formatGoalNumber(g._num))}</span>`
       : '—';
     return `<tr class="goal-row${isSel ? ' selected' : ''}" data-id="${escapeHtml(g.id)}">
-      <td class="col-compare" data-label="Comparer"><input type="checkbox" class="compare-check" data-id="${escapeHtml(g.id)}" ${checked} aria-label="Sélectionner ce but pour comparer" /></td>
-      <td data-label="N°">${num}</td>
+      <td class="col-no" data-label="N°">${num}</td>
       <td class="opponent" data-label="Adversaire">${escapeHtml(g.opponent)}</td>
       <td data-label="Compétition">${escapeHtml(g.competition) || '—'}</td>
       <td class="col-details" data-label=""><button class="btn-icon toggle-details" data-action="toggle" aria-expanded="false">▾ Détails</button></td>
-      <td class="col-action actions" data-label=""><button class="btn-icon" data-action="edit" title="Proposer une correction">✎ Corriger</button></td>
     </tr>
-    <tr class="details-row" hidden>
-      <td colspan="6"><div class="details-grid">${details}</div></td>
+    <tr class="details-row" data-id="${escapeHtml(g.id)}" hidden>
+      <td colspan="4">
+        <div class="details-grid">${details}</div>
+        <div class="details-actions">
+          <label class="compare-select"><input type="checkbox" class="compare-check" data-id="${escapeHtml(g.id)}" ${checked} /> Sélectionner ce but pour comparer</label>
+          <button class="btn-icon" data-action="edit" title="Proposer une correction">✎ Proposer une correction</button>
+        </div>
+      </td>
     </tr>`;
   }).join('');
 }
@@ -532,7 +537,10 @@ function wireEvents() {
   $('#goals-body').addEventListener('change', (e) => {
     const cb = e.target.closest('.compare-check');
     if (!cb) return;
-    const row = cb.closest('.goal-row');
+    // La case est dans la ligne « détails » : la ligne principale (mise en
+    // surbrillance) est sa sœur précédente.
+    const detailsRow = cb.closest('.details-row');
+    const row = detailsRow ? detailsRow.previousElementSibling : null;
     if (cb.checked) {
       if (selected.size >= 2) {
         cb.checked = false;
