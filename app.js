@@ -195,6 +195,9 @@ async function init() {
     await loadGoals();
   } catch (e) {
     showToast("Une erreur empêche de charger l'archive. Réessayez plus tard.", true);
+  } finally {
+    // L'archive est chargée (ou en erreur) : on retire le loader.
+    $('#loader').hidden = true;
   }
 }
 

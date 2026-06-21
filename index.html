@@ -90,6 +90,33 @@
         </thead>
         <tbody id="goals-body"></tbody>
       </table>
+
+      <!-- Loader : ballon de foot qui tourne sur lui-même (10 pas / tour) sur un
+           axe incliné à 120°/240°, affiché le temps que l'archive se charge. -->
+      <div class="loader" id="loader" role="status" aria-live="polite">
+        <div class="ball-loader">
+          <span class="ball-base" aria-hidden="true"></span>
+          <svg class="ball-spin" viewBox="-12 -12 124 124" aria-hidden="true">
+            <defs><clipPath id="ball-clip"><circle cx="50" cy="50" r="48"/></clipPath></defs>
+            <g clip-path="url(#ball-clip)">
+              <g fill="#15110d">
+                <polygon points="50.0,31.0 68.1,44.1 61.2,65.4 38.8,65.4 31.9,44.1"/>
+                <polygon points="65.0,-4.0 54.6,10.3 37.9,4.8 37.9,-12.8 54.6,-18.3"/>
+                <polygon points="106.0,47.6 89.2,42.1 89.2,24.5 106.0,19.0 116.4,33.3"/>
+                <polygon points="69.6,102.5 69.6,84.9 86.4,79.4 96.7,93.7 86.4,108.0"/>
+                <polygon points="6.1,84.9 22.9,79.4 33.3,93.7 22.9,108.0 6.1,102.5"/>
+                <polygon points="3.3,19.0 13.6,33.3 3.3,47.6 -13.5,42.1 -13.5,24.5"/>
+              </g>
+              <g stroke="#15110d" stroke-width="2.4" fill="none" stroke-linecap="round">
+                <path d="M50.0,31.0 L50.0,0.0"/><path d="M68.1,44.1 L97.6,34.5"/><path d="M61.2,65.4 L79.4,90.5"/><path d="M38.8,65.4 L20.6,90.5"/><path d="M31.9,44.1 L2.4,34.5"/>
+              </g>
+            </g>
+          </svg>
+          <span class="ball-shade" aria-hidden="true"></span>
+        </div>
+        <p class="loader-text">Chargement de l'archive…</p>
+      </div>
+
       <div class="empty-state" id="empty-state" hidden>
         <p class="empty-title">Aucun but ne correspond aux critères sélectionnés.</p>
         <p class="empty-sub">Essayez de retirer un filtre ou d'élargir votre recherche.</p>
