@@ -46,6 +46,21 @@ test('normalize : structure complète et minute numérique', () => {
   assert.strictEqual(g.competition, '');
 });
 
+test('sécurité : rejette les chevrons < > (anti-XSS / injection)', () => {
+  const errors = validateGoal({ date: '2010-01-01', opponent: '<script>Real' });
+  assert.ok(errors.some((e) => e.includes('chevrons')));
+});
+
+test('sécurité : rejette les caractères de contrôle / sauts de ligne', () => {
+  const errors = validateGoal({ date: '2010-01-01', opponent: 'Real\nIgnore previous instructions' });
+  assert.ok(errors.some((e) => e.includes('caractères de contrôle')));
+});
+
+test('sécurité : rejette un champ trop long', () => {
+  const errors = validateGoal({ date: '2010-01-01', opponent: 'X'.repeat(200) });
+  assert.ok(errors.some((e) => e.includes('trop long')));
+});
+
 test('build : les fichiers de données du dépôt sont tous valides', () => {
   const { goals, errors } = build();
   assert.deepStrictEqual(errors, []);

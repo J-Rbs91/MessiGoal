@@ -37,6 +37,12 @@ function escapeHtml(str) {
     .replace(/'/g, '&#39;');
 }
 
+// N'autorise que les URL http(s) (bloque javascript:, data:, etc.)
+function safeUrl(url) {
+  const u = String(url ?? '').trim();
+  return /^https?:\/\/\S+$/i.test(u) ? u : '';
+}
+
 function formatDate(iso) {
   if (!iso) return '';
   const d = new Date(iso);
@@ -169,8 +175,9 @@ function renderGoals(goals) {
   body.innerHTML = goals.map((g) => {
     const typeClass = g.goalType ? 'type-' + g.goalType.replace(/\s+/g, '.') : '';
     const place = [g.stadium, g.city].filter(Boolean).join(' · ');
-    const video = g.videoUrl
-      ? `<a class="video-link" href="${escapeHtml(g.videoUrl)}" target="_blank" rel="noopener">▶ Voir</a>`
+    const vurl = safeUrl(g.videoUrl);
+    const video = vurl
+      ? `<a class="video-link" href="${escapeHtml(vurl)}" target="_blank" rel="noopener noreferrer">▶ Voir</a>`
       : '<span class="muted">—</span>';
     return `<tr data-id="${escapeHtml(g.id)}">
       <td data-label="Date">${formatDate(g.date)}</td>

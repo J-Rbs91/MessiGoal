@@ -4,12 +4,16 @@
  * Agrège tous les fichiers de buts (data/goals/*.json) en un unique
  * goals.json (à la racine) consommé par le frontend statique.
  *
- *   node scripts/build-data.js          -> génère public/goals.json
+ *   node scripts/build-data.js          -> génère goals.json
  *   node scripts/build-data.js --check  -> valide seulement (CI), code != 0 si erreur
  *
  * Chaque but est stocké dans son propre fichier sur le dépôt : une
  * contribution = un fichier = une Pull Request, avec un diff propre et
  * sans conflit. Ce script ne fait qu'assembler et valider ces fichiers.
+ *
+ * Les champs texte libres sont traités comme des données NON FIABLES :
+ * on rejette caractères de contrôle, chevrons et longueurs excessives
+ * (défense anti-XSS et anti-injection de prompt pour tout agent automatisé).
  */
 
 const fs = require('fs');
@@ -26,9 +30,26 @@ const PLACEMENTS = [
   'Sous la barre', 'Ras de terre', 'Poteau rentrant', 'Plein centre', 'Panenka',
 ];
 
+// Champs texte libres saisis par le public, avec leur longueur maximale.
+const TEXT_FIELDS = {
+  id: 80, team: 60, opponent: 60, competition: 60, city: 60,
+  stadium: 80, assist: 80, goalkeeper: 60, contributor: 60,
+};
+const CONTROL_CHARS = new RegExp('[\\u0000-\\u001F\\u007F]'); // controle
+const ANGLE_BRACKETS = /[<>]/;
+
 function validateGoal(goal) {
   const errors = [];
   const isEmpty = (v) => v == null || String(v).trim() === '';
+
+  // Assainissement des champs texte libres (données non fiables)
+  for (const [field, maxLen] of Object.entries(TEXT_FIELDS)) {
+    if (isEmpty(goal[field])) continue;
+    const v = String(goal[field]);
+    if (v.length > maxLen) errors.push(field + ' trop long (max ' + maxLen + ' caractères)');
+    if (CONTROL_CHARS.test(v)) errors.push(field + ' contient des caractères de contrôle interdits');
+    if (ANGLE_BRACKETS.test(v)) errors.push(field + ' contient des chevrons « < » ou « > » interdits');
+  }
 
   if (isEmpty(goal.date)) errors.push('date manquante');
   else if (!/^\d{4}-\d{2}-\d{2}$/.test(goal.date)) errors.push('date attendue au format AAAA-MM-JJ');
@@ -51,8 +72,12 @@ function validateGoal(goal) {
   if (!isEmpty(goal.placement) && !PLACEMENTS.includes(goal.placement)) {
     errors.push('placement invalide (' + PLACEMENTS.join(', ') + ')');
   }
-  if (!isEmpty(goal.videoUrl) && !/^https?:\/\/\S+$/i.test(goal.videoUrl)) {
-    errors.push('lien vidéo invalide (doit commencer par http:// ou https://)');
+  if (!isEmpty(goal.videoUrl)) {
+    const u = String(goal.videoUrl);
+    if (u.length > 300) errors.push('lien vidéo trop long (max 300 caractères)');
+    if (!/^https?:\/\/\S+$/i.test(u)) {
+      errors.push('lien vidéo invalide (doit commencer par http:// ou https://)');
+    }
   }
   return errors;
 }
