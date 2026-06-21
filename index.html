@@ -27,13 +27,6 @@
   </header>
 
   <main class="container">
-    <!-- Aide à l'installation sur iPhone / iPad (affichée uniquement sur iOS) -->
-    <div class="ios-hint" id="ios-hint" hidden>
-      <span>📲 Installer l'appli sur iPhone : appuyez sur <strong>Partager</strong>
-        puis <strong>« Sur l'écran d'accueil »</strong>.</span>
-      <button class="btn-icon" id="ios-hint-close" aria-label="Fermer l'aide">✕</button>
-    </div>
-
     <!-- Statistiques -->
     <section class="stats" id="stats" aria-label="Statistiques">
       <div class="stat-card"><span class="stat-value" id="stat-total">—</span><span class="stat-label">Buts recensés</span></div>
@@ -43,7 +36,10 @@
     </section>
 
     <div class="toolbar">
-      <button class="btn btn-primary" id="btn-add">＋ Ajouter un but</button>
+      <div class="toolbar-actions">
+        <button class="btn btn-primary" id="btn-add">＋ Ajouter un but</button>
+        <button class="btn" id="btn-install" hidden>📲 Installer l'app</button>
+      </div>
       <p class="contrib-note" id="contrib-note">Site participatif : proposez vos <strong>ajouts</strong> et <strong>corrections</strong> via GitHub (validés par la communauté).</p>
     </div>
 
@@ -96,6 +92,18 @@
       <button class="btn btn-primary" id="compare-go" disabled>Comparer</button>
     </div>
   </div>
+
+  <!-- Modale d'installation -->
+  <dialog id="install-dialog">
+    <div class="compare-head">
+      <h2>📲 Installer MessiGoal</h2>
+      <button type="button" class="btn" id="install-close">Fermer</button>
+    </div>
+    <div class="install-body">
+      <p id="install-instructions"></p>
+      <p class="install-note">Une fois installée, l'appli s'ouvre en plein écran avec son icône, et fonctionne même hors connexion.</p>
+    </div>
+  </dialog>
 
   <!-- Modale de comparaison -->
   <dialog id="compare-dialog">

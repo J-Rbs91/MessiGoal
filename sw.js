@@ -9,7 +9,7 @@
  *  - données (goals.json) : réseau d'abord, repli sur le cache hors-ligne.
  */
 
-const VERSION = 'messigoal-v2';
+const VERSION = 'messigoal-v3';
 const SHELL = [
   './',
   './index.html',

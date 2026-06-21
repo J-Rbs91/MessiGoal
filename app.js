@@ -144,7 +144,7 @@ async function init() {
   populateSelect($('#select-placement'), META.placements, '—');
 
   wireEvents();
-  setupIosHint();
+  setupInstall();
   updateCompareBar();
   try {
     await getAllGoals();
@@ -162,25 +162,53 @@ function populateSelect(select, values, placeholder) {
   select.value = current;
 }
 
-// iOS n'a pas d'invite d'installation : on affiche une aide « Sur l'écran
-// d'accueil », uniquement sur iPhone/iPad hors mode application déjà installée.
-function setupIosHint() {
+// Bouton « Installer l'app » : invite native sur Android/Chrome, instructions
+// manuelles sur iPhone/iPad (iOS ne propose pas d'invite automatique).
+let deferredInstallPrompt = null;
+
+function setupInstall() {
+  const btn = $('#btn-install');
   const ua = navigator.userAgent || '';
   const isIOS = /iPad|iPhone|iPod/.test(ua) ||
     (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   const standalone = window.navigator.standalone === true ||
     window.matchMedia('(display-mode: standalone)').matches;
-  let dismissed = false;
-  try { dismissed = localStorage.getItem('ios-hint-dismissed') === '1'; } catch (e) { /* ignore */ }
 
-  if (!isIOS || standalone || dismissed) return;
+  if (standalone) return; // déjà installée → pas de bouton
 
-  const hint = $('#ios-hint');
-  hint.hidden = false;
-  $('#ios-hint-close').addEventListener('click', () => {
-    hint.hidden = true;
-    try { localStorage.setItem('ios-hint-dismissed', '1'); } catch (e) { /* ignore */ }
+  // Android / Chrome : on capte l'invite native et on affiche le bouton
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    btn.hidden = false;
   });
+  window.addEventListener('appinstalled', () => {
+    btn.hidden = true;
+    deferredInstallPrompt = null;
+    showToast('Application installée. Merci !');
+  });
+
+  // iOS : pas d'invite possible → on montre quand même le bouton (instructions)
+  if (isIOS) btn.hidden = false;
+
+  btn.addEventListener('click', async () => {
+    if (deferredInstallPrompt) {
+      deferredInstallPrompt.prompt();
+      await deferredInstallPrompt.userChoice;
+      deferredInstallPrompt = null;
+      btn.hidden = true;
+      return;
+    }
+    $('#install-instructions').innerHTML = isIOS
+      ? "Sur iPhone / iPad, dans <strong>Safari</strong> : appuyez sur le bouton " +
+        "<strong>Partager</strong> (carré avec une flèche vers le haut), faites défiler, " +
+        "puis choisissez <strong>« Sur l'écran d'accueil »</strong>."
+      : "Dans le menu de votre navigateur (⋮), choisissez " +
+        "<strong>« Installer l'application »</strong> ou <strong>« Ajouter à l'écran d'accueil »</strong>.";
+    $('#install-dialog').showModal();
+  });
+
+  $('#install-close').addEventListener('click', () => $('#install-dialog').close());
 }
 
 // ---------------------------------------------------------------------------
