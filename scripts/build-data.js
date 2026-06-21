@@ -2,7 +2,7 @@
 
 /**
  * Agrège tous les fichiers de buts (data/goals/*.json) en un unique
- * public/goals.json consommé par le frontend statique.
+ * goals.json (à la racine) consommé par le frontend statique.
  *
  *   node scripts/build-data.js          -> génère public/goals.json
  *   node scripts/build-data.js --check  -> valide seulement (CI), code != 0 si erreur
@@ -16,7 +16,7 @@ const fs = require('fs');
 const path = require('path');
 
 const GOALS_DIR = path.join(__dirname, '..', 'data', 'goals');
-const OUT_FILE = path.join(__dirname, '..', 'public', 'goals.json');
+const OUT_FILE = path.join(__dirname, '..', 'goals.json');
 
 const BODY_PARTS = ['Pied gauche', 'Pied droit', 'Tête', 'Autre'];
 const GOAL_TYPES = ['En jeu', 'Pénalty', 'Coup franc', 'Contre son camp'];

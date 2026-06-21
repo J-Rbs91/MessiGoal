@@ -6,7 +6,7 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
-const OUT = path.join(__dirname, '..', 'public', 'icons');
+const OUT = path.join(__dirname, '..', 'icons');
 
 function svg(size) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 512 512">

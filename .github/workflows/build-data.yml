@@ -1,0 +1,43 @@
+name: Reconstruction des données
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/goals/**'
+      - 'scripts/build-data.js'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-data
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupération du dépôt
+        uses: actions/checkout@v4
+
+      - name: Configuration de Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Reconstruction de goals.json
+        run: node scripts/build-data.js
+
+      - name: Commit si goals.json a changé
+        run: |
+          if [[ -n "$(git status --porcelain goals.json)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add goals.json
+            git commit -m "Reconstruit goals.json à partir de data/goals/"
+            git push
+          else
+            echo "goals.json déjà à jour."
+          fi

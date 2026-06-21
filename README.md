@@ -30,11 +30,11 @@ GitHub Pages.
 
 | Élément | Détail |
 |---|---|
-| Frontend | `public/` — HTML/CSS/JS sans framework, thème sombre « data » |
-| PWA | `public/manifest.webmanifest` + `public/sw.js` (hors-ligne, installable) |
+| Frontend | `index.html` + `styles.css` + `app.js` (racine), sans framework, thème sombre « data » |
+| PWA | `manifest.webmanifest` + `sw.js` (hors-ligne, installable) |
 | Données | **un fichier JSON par but** dans [`data/goals/`](data/goals/) |
-| Build | `scripts/build-data.js` agrège + valide → `public/goals.json` |
-| Déploiement | GitHub Actions → GitHub Pages (à chaque push sur `main`) |
+| Build | `scripts/build-data.js` agrège + valide → `goals.json` |
+| Déploiement | GitHub Pages depuis la branche `main` (racine) |
 
 Chaque but est stocké dans son **propre fichier** : une contribution = un fichier
 = une Pull Request, avec un diff propre et sans conflit. Le format est documenté
@@ -53,11 +53,14 @@ npm test             # tests unitaires
 
 Pour régénérer les icônes de la PWA : `node scripts/make-icons.js`.
 
-## Activer le déploiement (une seule fois)
+## Déploiement
 
-Dans **Settings → Pages**, choisir comme source **« GitHub Actions »**. Le
-workflow [`deploy-pages.yml`](.github/workflows/deploy-pages.yml) publie ensuite
-le site à chaque push sur `main`.
+Le site est servi par **GitHub Pages depuis la branche `main`** (dossier racine) —
+réglage **Settings → Pages → Deploy from a branch → `main` / `/ (root)`**.
+
+`goals.json` est versionné à la racine. À chaque ajout d'un fichier dans
+`data/goals/`, le workflow [`build-data.yml`](.github/workflows/build-data.yml)
+le régénère automatiquement et le recommite, afin que le site reste à jour.
 
 ## Contribuer
 
