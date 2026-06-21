@@ -144,6 +144,7 @@ async function init() {
   populateSelect($('#select-placement'), META.placements, '—');
 
   wireEvents();
+  setupIosHint();
   updateCompareBar();
   try {
     await getAllGoals();
@@ -159,6 +160,27 @@ function populateSelect(select, values, placeholder) {
   select.innerHTML = `<option value="">${placeholder}</option>` +
     values.map((v) => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
   select.value = current;
+}
+
+// iOS n'a pas d'invite d'installation : on affiche une aide « Sur l'écran
+// d'accueil », uniquement sur iPhone/iPad hors mode application déjà installée.
+function setupIosHint() {
+  const ua = navigator.userAgent || '';
+  const isIOS = /iPad|iPhone|iPod/.test(ua) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const standalone = window.navigator.standalone === true ||
+    window.matchMedia('(display-mode: standalone)').matches;
+  let dismissed = false;
+  try { dismissed = localStorage.getItem('ios-hint-dismissed') === '1'; } catch (e) { /* ignore */ }
+
+  if (!isIOS || standalone || dismissed) return;
+
+  const hint = $('#ios-hint');
+  hint.hidden = false;
+  $('#ios-hint-close').addEventListener('click', () => {
+    hint.hidden = true;
+    try { localStorage.setItem('ios-hint-dismissed', '1'); } catch (e) { /* ignore */ }
+  });
 }
 
 // ---------------------------------------------------------------------------

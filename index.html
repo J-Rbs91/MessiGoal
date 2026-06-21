@@ -7,8 +7,10 @@
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#000000" />
+  <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="MessiGoal" />
   <title>MessiGoal — Tous les buts de Lionel Messi</title>
   <meta name="description" content="Base de données participative recensant tous les buts de Lionel Messi : date, lieu, stade, adversaire, minute, partie du corps, type, compétition, gardien et vidéo." />
   <link rel="stylesheet" href="styles.css" />
@@ -25,6 +27,13 @@
   </header>
 
   <main class="container">
+    <!-- Aide à l'installation sur iPhone / iPad (affichée uniquement sur iOS) -->
+    <div class="ios-hint" id="ios-hint" hidden>
+      <span>📲 Installer l'appli sur iPhone : appuyez sur <strong>Partager</strong>
+        puis <strong>« Sur l'écran d'accueil »</strong>.</span>
+      <button class="btn-icon" id="ios-hint-close" aria-label="Fermer l'aide">✕</button>
+    </div>
+
     <!-- Statistiques -->
     <section class="stats" id="stats" aria-label="Statistiques">
       <div class="stat-card"><span class="stat-value" id="stat-total">—</span><span class="stat-label">Buts recensés</span></div>
