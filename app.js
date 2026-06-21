@@ -298,7 +298,6 @@ function renderGoals(goals) {
       ? `<span class="goal-no">${escapeHtml(formatGoalNumber(g._num))}</span>`
       : '—';
     return `<tr class="goal-row${isSel ? ' selected' : ''}" data-id="${escapeHtml(g.id)}">
-      <td class="col-compare" data-label="Comparer"><input type="checkbox" class="compare-check" data-id="${escapeHtml(g.id)}" ${checked} aria-label="Sélectionner ce but pour comparer" /></td>
       <td data-label="N°">${num}</td>
       <td class="opponent" data-label="Adversaire">${escapeHtml(g.opponent)}</td>
       <td data-label="Compétition">${escapeHtml(g.competition) || '—'}</td>
@@ -306,7 +305,11 @@ function renderGoals(goals) {
       <td class="col-action actions" data-label=""><button class="btn-icon" data-action="edit" title="Proposer une correction">✎ Corriger</button></td>
     </tr>
     <tr class="details-row" hidden>
-      <td colspan="6"><div class="details-grid">${details}</div></td>
+      <td colspan="5"><div class="details-grid">${details}
+        <div class="detail-actions">
+          <label class="compare-toggle"><input type="checkbox" class="compare-check" data-id="${escapeHtml(g.id)}" ${checked} aria-label="Ajouter ce but à la comparaison (jusqu'à 4 buts)" /> Comparer ce but</label>
+        </div>
+      </div></td>
     </tr>`;
   }).join('');
 }
@@ -348,14 +351,17 @@ function detailItem(key, g) {
 }
 
 // ---------------------------------------------------------------------------
-// Comparaison de deux buts
+// Comparaison de 2 à 4 buts
 // ---------------------------------------------------------------------------
 function updateCompareBar() {
   const n = selected.size;
   $('#compare-bar').hidden = n === 0;
-  $('#compare-info').textContent =
-    n + (n > 1 ? ' buts sélectionnés' : ' but sélectionné') + (n < 2 ? ' — choisissez-en 2' : '');
-  $('#compare-go').disabled = n !== 2;
+  const base = n + (n > 1 ? ' buts sélectionnés' : ' but sélectionné');
+  let hint = '';
+  if (n < 2) hint = ' — choisissez-en au moins 2';
+  else if (n >= 4) hint = ' — maximum atteint';
+  $('#compare-info').textContent = base + hint;
+  $('#compare-go').disabled = n < 2;
 }
 
 function clearCompare() {
@@ -366,10 +372,10 @@ function clearCompare() {
 }
 
 async function openCompare() {
-  if (selected.size !== 2) return;
+  if (selected.size < 2) return;
   const all = await getAllGoals();
-  const [a, b] = [...selected].map((id) => all.find((g) => g.id === id)).filter(Boolean);
-  if (!a || !b) return;
+  const goals = [...selected].map((id) => all.find((g) => g.id === id)).filter(Boolean);
+  if (goals.length < 2) return;
 
   const videoCell = (g) => {
     const u = safeUrl(g.videoUrl);
@@ -377,19 +383,26 @@ async function openCompare() {
   };
   // Marqueur accessible : ne pas signaler une différence par la seule couleur.
   const diffTag = '<span class="diff-tag">différent</span>';
-  const head = `<thead><tr><th>Champ</th>
-    <th>But ${escapeHtml(a._num != null ? formatGoalNumber(a._num) : '')}<br><small>${escapeHtml(a.opponent)} · ${formatDate(a.date)}</small></th>
-    <th>But ${escapeHtml(b._num != null ? formatGoalNumber(b._num) : '')}<br><small>${escapeHtml(b.opponent)} · ${formatDate(b.date)}</small></th></tr></thead>`;
+  // Une ligne est « différente » dès que les buts comparés n'ont pas tous la
+  // même valeur (fonctionne pour 2, 3 ou 4 buts).
+  const allEqual = (vals) => vals.every((v) => v === vals[0]);
+
+  const head = '<thead><tr><th>Champ</th>' + goals.map((g) =>
+    `<th>But ${escapeHtml(g._num != null ? formatGoalNumber(g._num) : '')}` +
+    `<br><small>${escapeHtml(g.opponent)} · ${formatDate(g.date)}</small></th>`
+  ).join('') + '</tr></thead>';
+
   const rows = FIELDS.map(([key, label, fmt]) => {
-    const va = String(fmt(a) || '');
-    const vb = String(fmt(b) || '');
-    const isDiff = va !== vb;
+    const vals = goals.map((g) => String(fmt(g) || ''));
+    const isDiff = !allEqual(vals);
     return `<tr${isDiff ? ' class="diff"' : ''}><th>${label}${isDiff ? diffTag : ''}</th>` +
-      `<td>${escapeHtml(va) || '—'}</td><td>${escapeHtml(vb) || '—'}</td></tr>`;
+      vals.map((v) => `<td>${escapeHtml(v) || '—'}</td>`).join('') + '</tr>';
   }).join('');
-  const videoDiff = safeUrl(a.videoUrl) !== safeUrl(b.videoUrl);
-  const videoRow = `<tr${videoDiff ? ' class="diff"' : ''}>` +
-    `<th>Vidéo${videoDiff ? diffTag : ''}</th><td>${videoCell(a)}</td><td>${videoCell(b)}</td></tr>`;
+
+  const vurls = goals.map((g) => safeUrl(g.videoUrl));
+  const videoDiff = !allEqual(vurls);
+  const videoRow = `<tr${videoDiff ? ' class="diff"' : ''}><th>Vidéo${videoDiff ? diffTag : ''}</th>` +
+    goals.map((g) => `<td>${videoCell(g)}</td>`).join('') + '</tr>';
 
   $('#compare-table').innerHTML = head + '<tbody>' + rows + videoRow + '</tbody>';
   $('#compare-dialog').showModal();
@@ -532,11 +545,13 @@ function wireEvents() {
   $('#goals-body').addEventListener('change', (e) => {
     const cb = e.target.closest('.compare-check');
     if (!cb) return;
-    const row = cb.closest('.goal-row');
+    // La case est désormais dans le menu déplié : on remonte à la ligne du but.
+    const detailsRow = cb.closest('.details-row');
+    const row = detailsRow ? detailsRow.previousElementSibling : cb.closest('.goal-row');
     if (cb.checked) {
-      if (selected.size >= 2) {
+      if (selected.size >= 4) {
         cb.checked = false;
-        showToast('Vous ne pouvez comparer que 2 buts à la fois.', true);
+        showToast('Vous pouvez comparer jusqu’à 4 buts à la fois.', true);
         return;
       }
       selected.add(cb.dataset.id);
