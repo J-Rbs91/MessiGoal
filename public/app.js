@@ -115,17 +115,17 @@ function renderGoals(goals) {
       ? `<a class="video-link" href="${escapeHtml(g.videoUrl)}" target="_blank" rel="noopener">▶ Voir</a>`
       : '<span class="muted">—</span>';
     return `<tr data-id="${g.id}">
-      <td>${formatDate(g.date)}</td>
-      <td class="opponent">${escapeHtml(g.opponent)}</td>
-      <td>${escapeHtml(g.competition) || '—'}</td>
-      <td>${escapeHtml(place) || '—'}</td>
-      <td>${g.minute != null ? escapeHtml(g.minute) + "'" : '—'}</td>
-      <td>${escapeHtml(g.bodyPart) || '—'}</td>
-      <td>${g.goalType ? `<span class="badge ${typeClass}">${escapeHtml(g.goalType)}</span>` : '—'}</td>
-      <td>${escapeHtml(g.goalkeeper) || '—'}</td>
-      <td>${video}</td>
-      <td>
-        <button class="btn-icon" data-action="edit" title="Modifier / corriger">✏️</button>
+      <td data-label="Date">${formatDate(g.date)}</td>
+      <td class="opponent" data-label="Adversaire">${escapeHtml(g.opponent)}</td>
+      <td data-label="Compétition">${escapeHtml(g.competition) || '—'}</td>
+      <td data-label="Lieu / Stade">${escapeHtml(place) || '—'}</td>
+      <td data-label="Minute">${g.minute != null ? escapeHtml(g.minute) + "'" : '—'}</td>
+      <td data-label="Partie du corps">${escapeHtml(g.bodyPart) || '—'}</td>
+      <td data-label="Type">${g.goalType ? `<span class="badge ${typeClass}">${escapeHtml(g.goalType)}</span>` : '—'}</td>
+      <td data-label="Gardien">${escapeHtml(g.goalkeeper) || '—'}</td>
+      <td data-label="Vidéo">${video}</td>
+      <td class="actions" data-label="">
+        <button class="btn-icon" data-action="edit" title="Modifier / corriger">✏️ Corriger</button>
         <button class="btn-icon" data-action="delete" title="Supprimer">🗑️</button>
       </td>
     </tr>`;
