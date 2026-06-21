@@ -27,28 +27,36 @@ function pentagon(cx, cy, r, rotDeg = 0) {
 
 function ballSvg(size) {
   const c = 256, R = 196;
-  // Centres des pentagones extérieurs (au milieu des arêtes du pentagone central)
+
+  // Pentagones extérieurs : au milieu des arêtes du pentagone central,
+  // près du bord, pointant vers le centre et découpés par le ballon.
   const outerAngles = [-54, 18, 90, 162, 234];
   const outer = outerAngles.map((deg) => {
     const a = (deg * Math.PI) / 180;
-    return { x: c + 150 * Math.cos(a), y: c + 150 * Math.sin(a), rot: deg + 180 };
+    return { x: c + 150 * Math.cos(a), y: c + 150 * Math.sin(a), rot: deg - 90 };
   });
-  // Coutures : des sommets du pentagone central vers le bord du ballon
+
+  // Coutures : des sommets du pentagone central vers le bord (entre les pentagones)
   const seams = [];
   for (let i = 0; i < 5; i++) {
     const a = ((-90 + i * 72) * Math.PI) / 180;
     seams.push(
-      `<line x1="${(c + 66 * Math.cos(a)).toFixed(1)}" y1="${(c + 66 * Math.sin(a)).toFixed(1)}" ` +
+      `<line x1="${(c + 60 * Math.cos(a)).toFixed(1)}" y1="${(c + 60 * Math.sin(a)).toFixed(1)}" ` +
       `x2="${(c + R * Math.cos(a)).toFixed(1)}" y2="${(c + R * Math.sin(a)).toFixed(1)}" ` +
-      `stroke="${SEAM}" stroke-width="9" stroke-linecap="round"/>`
+      `stroke="${SEAM}" stroke-width="11" stroke-linecap="round"/>`
     );
   }
+
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 512 512">
+    <defs><clipPath id="ball"><circle cx="${c}" cy="${c}" r="${R}"/></clipPath></defs>
     <rect width="512" height="512" fill="${BG}"/>
-    <circle cx="${c}" cy="${c}" r="${R}" fill="${BALL}" stroke="${BLAU}" stroke-width="8"/>
-    ${seams.join('\n    ')}
-    ${outer.map((o) => `<polygon points="${pentagon(o.x, o.y, 46, o.rot)}" fill="${BLAU}"/>`).join('\n    ')}
-    <polygon points="${pentagon(c, c, 66, 0)}" fill="${GRANA}"/>
+    <circle cx="${c}" cy="${c}" r="${R}" fill="${BALL}"/>
+    <g clip-path="url(#ball)">
+      ${seams.join('\n      ')}
+      ${outer.map((o) => `<polygon points="${pentagon(o.x, o.y, 60, o.rot)}" fill="${BLAU}" stroke="${SEAM}" stroke-width="6" stroke-linejoin="round"/>`).join('\n      ')}
+      <polygon points="${pentagon(c, c, 62, 0)}" fill="${GRANA}" stroke="${SEAM}" stroke-width="6" stroke-linejoin="round"/>
+    </g>
+    <circle cx="${c}" cy="${c}" r="${R}" fill="none" stroke="${BLAU}" stroke-width="10"/>
   </svg>`;
 }
 
