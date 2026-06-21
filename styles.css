@@ -445,6 +445,11 @@ a { color: var(--lime); }
 @media (prefers-reduced-motion: reduce) {
   .ball-spin { animation-duration: 3s; }
 }
+/* Repère de version visible (diagnostic cache) */
+.build-stamp {
+  margin-top: 10px; font-family: var(--mono); font-size: 0.72rem;
+  color: var(--gold); letter-spacing: 0.02em;
+}
 
 /* ------------------------------------------------------------ Dialog/form */
 dialog {

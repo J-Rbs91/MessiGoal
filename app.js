@@ -1,5 +1,10 @@
 'use strict';
 
+// Repère de version VISIBLE (affiché en bas de page). Sert à vérifier d'un coup
+// d'œil, sur un appareil, si c'est bien la dernière version qui est chargée
+// (et pas une ancienne servie par le cache du service worker).
+const BUILD = 'v8 — menu déroulant réorganisé · 21 juin';
+
 // ---------------------------------------------------------------------------
 // Application 100 % statique (GitHub Pages, sans backend).
 // Les buts sont lus depuis goals.json (généré à partir de data/goals/*.json).
@@ -189,6 +194,7 @@ async function init() {
   wireEvents();
   setupInstall();
   updateCompareUI();
+  $('#build-stamp').textContent = BUILD;
   try {
     await getAllGoals();
     await loadStats();
