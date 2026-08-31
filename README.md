@@ -6,7 +6,7 @@
 📲 **Installable en application mobile (PWA)** — « Ajouter à l'écran d'accueil ».
 
 [![Validation des données](https://github.com/J-Rbs91/MessiGoal/actions/workflows/validate-data.yml/badge.svg)](https://github.com/J-Rbs91/MessiGoal/actions/workflows/validate-data.yml)
-[![Déploiement GitHub Pages](https://github.com/J-Rbs91/MessiGoal/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/J-Rbs91/MessiGoal/actions/workflows/deploy-pages.yml)
+[![Reconstruction des données](https://github.com/J-Rbs91/MessiGoal/actions/workflows/build-data.yml/badge.svg)](https://github.com/J-Rbs91/MessiGoal/actions/workflows/build-data.yml)
 
 Chacun peut **ajouter**, **corriger** et **compléter** les buts. Pour chaque but,
 on recense :
