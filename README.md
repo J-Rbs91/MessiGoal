@@ -1,3 +1,5 @@
+![MESSIGOAL, bannière reprenant l'identité visuelle du site](.github/readme-hero.svg)
+
 # ⚽ MessiGoal
 
 **Base de données participative recensant tous les buts de Lionel Messi.**
